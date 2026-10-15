@@ -11,7 +11,7 @@ box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:en
 :root[data-theme="dark"]{--bg:#1c110d;--ink:#fdeaf4;--soft:#c9aab9;--tint:#34201a;--nav:#120a07;color-scheme:dark}
 html{height:100%;scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 70px)}
 *,*::before,*::after{box-sizing:inherit}
-body{margin:0;min-height:100%;background:var(--bg);color:var(--ink);font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:17px;line-height:1.5}
+body{margin:0;min-height:100%;background:var(--bg);color:var(--ink);font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:17px;line-height:1.5;overflow-x:clip}
 a{color:inherit}
 :focus-visible{outline:3px solid var(--pinkd);outline-offset:3px}
 header{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--nav);color:var(--navink)}
@@ -69,8 +69,11 @@ dialog::backdrop{background:rgba(31,17,13,.6);backdrop-filter:blur(6px)}
 .pcs img,.pcs video{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:18px;border:2px solid var(--pinkd);background:#000}
 .x{position:absolute;top:22px;right:22px;z-index:2;width:48px;height:48px;border:0;border-radius:50%;background:var(--accent);color:var(--onacc);font-size:26px;line-height:1;font-weight:700;cursor:pointer}
 .wt{margin-top:96px}
+.wt h2{font-size:clamp(30px,4.4vw,54px)}
+.wt .txt p{font-size:16px;line-height:1.5}
 .tilt{display:inline-block;white-space:nowrap;background:var(--lime);color:var(--onacc);padding:.02em .16em .1em;margin:.04em 0 0 -.04em;transform:rotate(-2.4deg)}
-.cta{background:var(--nav);color:var(--navink);padding:96px 24px}
+.tilt.pk{background:var(--accent)}
+.cta{background:var(--nav);color:var(--navink);padding:96px 24px;position:relative;z-index:4}
 .ctai{max-width:1100px;margin:auto}
 .cta h2{font-size:clamp(26px,4.8vw,66px)}
 .cta .pl{display:flex;flex-wrap:wrap;gap:16px;margin-top:40px}
@@ -83,7 +86,7 @@ dialog::backdrop{background:rgba(31,17,13,.6);backdrop-filter:blur(6px)}
 .gc span{font-size:13px;line-height:1.3;color:var(--soft)}
 .gc:hover{background:var(--lime);color:var(--onacc)}
 .gc:hover span{color:var(--onacc)}
-section.w{max-width:1100px;margin:auto;padding:96px 24px}
+section.w{max-width:1100px;margin:auto;padding:96px 24px;position:relative}
 h2{font-size:clamp(38px,5.5vw,68px)}
 h3{font-size:clamp(28px,3.6vw,42px)}
 .lead{max-width:56ch;color:var(--soft);margin:20px 0 0}
@@ -94,7 +97,6 @@ h3{font-size:clamp(28px,3.6vw,42px)}
 .tools div{display:flex;gap:28px;align-items:center;width:max-content;animation:mq 60s linear infinite}
 .tools span{color:var(--onacc);font-weight:700;font-size:15px;white-space:nowrap}
 .tools span::after{content:"★";margin-left:28px}
-body{overflow-x:clip}
 @keyframes mq{to{transform:translateX(-50%)}}
 .proc{display:grid;grid-template-columns:1.2fr 1fr;gap:28px;margin-top:28px;align-items:start}
 .steps{display:grid;grid-template-columns:1fr 1fr;gap:16px}
@@ -124,18 +126,24 @@ body{overflow-x:clip}
 .gr{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;flex:1}
 .gr i{background:var(--tint)}
 .post,.pj i{border:2px solid var(--pinkd);border-radius:14px;overflow:hidden}
-.post{aspect-ratio:4/5;display:flex;flex-direction:column;position:relative}
+.post{aspect-ratio:4/5;display:block;position:relative}
 .post img,.post video{width:100%;height:100%;object-fit:cover;display:block}
-.post span.lbl{position:absolute;bottom:0;left:0;right:0;background:rgba(62,39,31,.85);color:#fff;padding:8px 10px;font-size:12px;font-weight:700;line-height:1.2}
 .pjs{display:grid;grid-template-columns:1fr 1fr;gap:40px 24px;margin-top:48px}
 .pj i{display:block;aspect-ratio:16/10;font-style:normal}
 .pj i img,.pj i video{width:100%;height:100%;object-fit:cover;display:block}
 .pj h3{font-size:30px;margin-top:16px}
 .pj p{margin:8px 0 0;color:var(--soft);font-size:16px}
 .about{display:grid;grid-template-columns:1.3fr 1fr;gap:48px;align-items:start}
-footer{background:var(--nav);color:var(--navink);text-align:center;padding:28px 24px;font-size:15px}
+footer{background:var(--nav);color:var(--navink);text-align:center;padding:28px 24px;font-size:15px;position:relative;z-index:4}
 .cur{position:fixed;left:0;top:0;width:28px;height:28px;border:2px solid var(--pinkd);border-radius:50%;pointer-events:none;opacity:0;z-index:20;transition:width .15s,height .15s,margin .15s}
 .cur.big{width:48px;height:48px;margin:-10px 0 0 -10px}
+
+/* STICKERS EN QUIEN SOY */
+#quien{position:relative;overflow:hidden}
+#quien h2,#quien p,#quien .wt,#quien .about{position:relative;z-index:2}
+.sk{position:absolute;left:0;top:0;z-index:3;cursor:grab;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-user-drag:none;transform:rotate(var(--r,0deg));filter:drop-shadow(0 4px 10px rgba(0,0,0,0.30));transition:filter .15s}
+.sk.drag{cursor:grabbing;z-index:10!important;filter:drop-shadow(0 14px 22px rgba(0,0,0,0.40)) scale(1.05)}
+
 @media (max-width:760px){
 .hero{grid-template-columns:1fr;gap:32px;padding-top:32px}
 nav{gap:16px}nav a{font-size:14px}
@@ -204,16 +212,19 @@ nav{gap:16px}nav a{font-size:14px}
 <p class="lead">Proyectos propios y trabajos de la facultad.</p>
 <div class="pjs" id="pjs"></div></section>
 
-<div class="page" id="quien"><section class="w"><div class="about">
+<div class="page" id="quien">
+<section class="w">
+<div class="about">
 <div><h2>Quién soy</h2>
 <p class="lead">Soy community manager en Buenos Aires y estudio la Licenciatura en Publicidad en UADE. Me gusta que cada marca suene a sí misma, con ideas claras y resultados que se puedan medir.</p></div>
 </div>
-<div class="wt"><h2>Work and Travel</h2><p class="cat">Alemania</p>
+<div class="wt"><h2>Work and <span class="tilt pk">Travel</span></h2><p class="cat">Alemania</p>
 <div class="txt" style="margin-top:28px">
 <p>Entre enero y marzo de 2026 tuve la oportunidad de participar en un programa de Work &amp; Travel con destino Alemania, donde trabajé en Elmar Jung Product Solutions, una de las principales compañías de logística ubicada en Neunkirchen, Saar.</p>
 <p>En esta experiencia no solo tuve la oportunidad de trabajar y conocer una cultura completamente distinta, sino también de desarrollar habilidades a nivel personal y profesional. Aprender a adaptarme a un nuevo entorno, comunicarme en otro idioma, resolver situaciones fuera de mi zona de confort y convivir con personas de diferentes partes del mundo fueron desafíos que me permitieron crecer, ganar independencia y ampliar mi perspectiva.</p>
 <p>Fuera del trabajo, la experiencia fue increíble: hice amigos de todo el mundo, aprendí a comunicarme en situaciones donde el idioma común muchas veces era el alemán, y entendí lo que significa adaptarse rápido a culturas y formas de vivir diferentes a las mías. Esta etapa fortaleció mi manejo de idiomas y mi interés por seguir formándome en contextos internacionales.</p>
-</div></div></section>
+</div></div>
+</section>
 <section class="cta"><div class="ctai"><h2>Trabajemos <span class="tilt">juntos</span></h2>
 <div class="pl"><a class="m" href="mailto:tiziana.tombel@gmail.com">tiziana.tombel@gmail.com</a><a href="https://www.linkedin.com/in/tiziana-tombel-8a77ba2a0/" target="_blank" rel="noopener">LinkedIn</a></div></div></section>
 </div>
@@ -281,7 +292,7 @@ $('feeds').innerHTML=feeds.map(function(f){
       var media = item.v 
         ? '<video src="'+item.f+'" autoplay muted loop playsinline></video>'
         : '<img src="'+item.f+'" alt="'+item.t+'" loading="lazy">';
-      return '<div class="post">'+media+'<span class="lbl">'+item.t+'</span></div>';
+      return '<div class="post">'+media+'</div>';
     }).join('')+
   '</div>';
 }).join('');
@@ -362,9 +373,10 @@ function go(){
   var id=location.hash.slice(1),el=$(id),pg=pages.filter(function(p){return p.id===id})[0]||(el&&el.closest('.page'))||$('home');
   pages.forEach(function(p){p.classList.toggle('on',p===pg)});
   links.forEach(function(a){a.classList.toggle('on',a.getAttribute('href')==='#'+pg.id)});
+  if(pg===qs&&!skBuilt)skInit();
   if(el&&el!==pg){el.scrollIntoView()}else{window.scrollTo(0,0)}
 }
-addEventListener('hashchange',go);go();
+addEventListener('hashchange',go);
 
 var cur=$('cur');
 if(matchMedia('(hover:hover) and (pointer:fine)').matches&&!matchMedia('(prefers-reduced-motion:reduce)').matches){
@@ -374,6 +386,155 @@ if(matchMedia('(hover:hover) and (pointer:fine)').matches&&!matchMedia('(prefers
     a.addEventListener('pointerleave',function(){cur.classList.remove('big')});
   });
 }
+
+/* SISTEMA DE STICKERS DINÁMICOS CON DETECCIÓN DE ESPACIO NEGATIVO */
+var qs=$('quien'), skEls=[], skZ=10, skBuilt=false;
+// Coordenadas [x, y, w, h] relativas a img/stickers.jpg (1920x1080)
+var STICKER_BOXES = [
+  [85, 125, 225, 205],   // Gorra rosa "exotic thinker"
+  [225, 115, 215, 215],  // Bola disco
+  [365, 160, 230, 260],  // Nota "illustratte"
+  [510, 170, 240, 180],  // Cámara rosa
+  [655, 160, 160, 220],  // Vaso matcha verde
+  [750, 175, 130, 230],  // Crema Rhode
+  [85, 320, 240, 215],   // Taza "i hate explaining"
+  [300, 310, 150, 110],  // Cerezas
+  [235, 420, 480, 140],  // Overworked
+  [505, 385, 130, 130],  // Vinilo
+  [590, 340, 220, 160],  // I love my job
+  [695, 390, 240, 170],  // Macbook rosa
+  [140, 545, 250, 145],  // Código de barra
+  [295, 595, 225, 125],  // Lentes negros
+  [430, 580, 150, 150],  // Flor lima
+  [525, 580, 85, 130],   // Cursor flecha
+  [565, 495, 130, 185],  // Vaso térmico Stanley rosa
+  [115, 725, 150, 155],  // Gato negro
+  [240, 715, 285, 135],  // Peace oval
+  [450, 715, 305, 185]   // Boarding pass
+];
+
+function getObstacles() {
+  var c = qs.getBoundingClientRect(), obs = [];
+  var padding = 16;
+  function addBox(r) {
+    if(r.width && r.height) {
+      obs.push([r.left - c.left - padding, r.top - c.top - padding, r.right - c.left + padding, r.bottom - c.top + padding]);
+    }
+  }
+  qs.querySelectorAll('h2, p, .cat, .cta, .btn').forEach(function(el) {
+    var rg = document.createRange();
+    rg.selectNodeContents(el);
+    var rects = rg.getClientRects();
+    for(var i=0; i<rects.length; i++) addBox(rects[i]);
+  });
+  return obs;
+}
+
+function hitTest(x, y, w, h, obs) {
+  var cw = qs.offsetWidth, ch = qs.offsetHeight;
+  if(x < 10 || y < 10 || (x + w) > (cw - 10) || (y + h) > (ch - 10)) return true;
+  for(var i=0; i<obs.length; i++){
+    var o = obs[i];
+    if(x < o[2] && (x + w) > o[0] && y < o[3] && (y + h) > o[1]) return true;
+  }
+  return false;
+}
+
+function skInit() {
+  skBuilt = true;
+  var sheet = new Image();
+  sheet.src = 'img/stickers.jpg';
+  sheet.onload = function() {
+    var obs = getObstacles();
+    var scale = innerWidth <= 760 ? 0.38 : 0.52;
+
+    STICKER_BOXES.forEach(function(box, idx) {
+      var bx = box[0], by = box[1], bw = box[2], bh = box[3];
+      var cv = document.createElement('canvas');
+      cv.width = bw;
+      cv.height = bh;
+      var ctx = cv.getContext('2d');
+      ctx.drawImage(sheet, bx, by, bw, bh, 0, 0, bw, bh);
+
+      // Limpieza del fondo negro a transparencia pura
+      var imgData = ctx.getImageData(0, 0, bw, bh);
+      var d = imgData.data;
+      for(var i=0; i<d.length; i+=4) {
+        if(d[i] < 35 && d[i+1] < 35 && d[i+2] < 35) d[i+3] = 0;
+      }
+      ctx.putImageData(imgData, 0, 0);
+
+      var img = new Image();
+      img.src = cv.toDataURL();
+      img.className = 'sk';
+      var w = Math.round(bw * scale);
+      var h = Math.round(bh * scale);
+      img.style.width = w + 'px';
+      img.style.height = h + 'px';
+      img.style.setProperty('--r', ((Math.random() - 0.5) * 32).toFixed(1) + 'deg');
+
+      // Buscar posición libre en el espacio negativo
+      var placed = false, tries = 0, posX = 20, posY = 20;
+      while(!placed && tries++ < 250) {
+        posX = Math.random() * (qs.offsetWidth - w - 20);
+        posY = Math.random() * (qs.offsetHeight - h - 20);
+        if(!hitTest(posX, posY, w, h, obs)) placed = true;
+      }
+      if(!placed) {
+        posX = (idx % 2 === 0) ? 20 : (qs.offsetWidth - w - 20);
+        posY = Math.min(qs.offsetHeight - h - 30, Math.max(40, idx * 80));
+      }
+
+      img._x = posX;
+      img._y = posY;
+      img.style.left = posX + 'px';
+      img.style.top = posY + 'px';
+
+      // Drag and drop interactivo respetando zonas de texto
+      img.addEventListener('pointerdown', function(e) {
+        if(e.button) return;
+        e.preventDefault();
+        img.setPointerCapture(e.pointerId);
+        img.classList.add('drag');
+        img.style.zIndex = ++skZ;
+        var currentObs = getObstacles();
+        var sx = e.clientX, sy = e.clientY, ox = img._x, oy = img._y;
+
+        function onMove(ev) {
+          var tx = ox + ev.clientX - sx;
+          var ty = oy + ev.clientY - sy;
+          // Si colisiona con el texto, detiene el movimiento en esa dirección
+          if(!hitTest(tx, ty, w, h, currentObs)) {
+            img._x = tx; img._y = ty;
+            img.style.left = tx + 'px';
+            img.style.top = ty + 'px';
+          } else if(!hitTest(tx, img._y, w, h, currentObs)) {
+            img._x = tx;
+            img.style.left = tx + 'px';
+          } else if(!hitTest(img._x, ty, w, h, currentObs)) {
+            img._y = ty;
+            img.style.top = ty + 'px';
+          }
+        }
+
+        function onUp() {
+          img.classList.remove('drag');
+          img.removeEventListener('pointermove', onMove);
+          img.removeEventListener('pointerup', onUp);
+          img.removeEventListener('pointercancel', onUp);
+        }
+        img.addEventListener('pointermove', onMove);
+        img.addEventListener('pointerup', onUp);
+        img.addEventListener('pointercancel', onUp);
+      });
+
+      qs.appendChild(img);
+      skEls.push(img);
+    });
+  };
+}
+
+go();
 </script>
 </body>
 </html>
