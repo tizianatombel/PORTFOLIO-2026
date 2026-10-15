@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Tizi. — Social Media & Community Manager</title>
+<title>Tiziana Tombel — Social Media & Community Manager</title>
 <style>
 :root{--bg:#fff;--ink:#3e271f;--soft:#7b6358;--accent:#f9cde4;--pinkd:#e58bbd;--lime:#e2f53b;--onacc:#3e271f;--tint:#fdeaf4;--nav:#3e271f;--navink:#fdf0f7;
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
@@ -140,17 +140,18 @@ footer{background:var(--nav);color:var(--navink);text-align:center;padding:28px 
 
 /* STICKERS EN QUIEN SOY */
 #quien{position:relative;overflow:hidden}
-#quien h2,#quien p,#quien .wt,#quien .about{position:relative;z-index:2}
+.tray{min-height:220px}
+#quien>section.w{padding-bottom:24px}
 .sk{position:absolute;left:0;top:0;z-index:3;cursor:grab;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-user-drag:none;transform:rotate(var(--r,0deg));filter:drop-shadow(0 4px 10px rgba(0,0,0,0.30));transition:filter .15s}
 .sk.drag{cursor:grabbing;z-index:10!important;filter:drop-shadow(0 14px 22px rgba(0,0,0,0.40)) scale(1.05)}
-.sk-inner{width:100%;height:100%;background-image:url('img/stickers.png');background-repeat:no-repeat;mix-blend-mode:multiply}
 
 @media (max-width:760px){
 .hero{grid-template-columns:1fr;gap:32px;padding-top:32px}
 nav{gap:16px}nav a{font-size:14px}
 .proc,.about,.pjs,.steps,.abt,.cvw{grid-template-columns:1fr}.cv li{flex-direction:column;gap:4px}.cv span{text-align:left}.step:last-child{grid-column:auto}
 .row{grid-template-columns:1fr 1fr}.ph{display:none}
-.dlgin{padding:44px 24px 32px}}
+.dlgin{padding:44px 24px 32px}
+.tray{min-height:260px}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.ring svg.t,.tools div,.spin{animation:none}.tools{overflow-x:auto}}
 </style>
 </head>
@@ -218,6 +219,7 @@ nav{gap:16px}nav a{font-size:14px}
 <div class="about">
 <div><h2>Quién soy</h2>
 <p class="lead">Soy community manager en Buenos Aires y estudio la Licenciatura en Publicidad en UADE. Me gusta que cada marca suene a sí misma, con ideas claras y resultados que se puedan medir.</p></div>
+<div class="tray" id="tray" aria-hidden="true"></div>
 </div>
 <div class="wt"><h2>Work and <span class="tilt pk">Travel</span></h2><p class="cat">Alemania</p>
 <div class="txt" style="margin-top:28px">
@@ -374,7 +376,7 @@ function go(){
   var id=location.hash.slice(1),el=$(id),pg=pages.filter(function(p){return p.id===id})[0]||(el&&el.closest('.page'))||$('home');
   pages.forEach(function(p){p.classList.toggle('on',p===pg)});
   links.forEach(function(a){a.classList.toggle('on',a.getAttribute('href')==='#'+pg.id)});
-  if(pg===qs&&!skBuilt)skInit();
+  if(pg===qs&&!skEls.length)skShow();
   if(el&&el!==pg){el.scrollIntoView()}else{window.scrollTo(0,0)}
 }
 addEventListener('hashchange',go);
@@ -388,143 +390,52 @@ if(matchMedia('(hover:hover) and (pointer:fine)').matches&&!matchMedia('(prefers
   });
 }
 
-/* SISTEMA DE STICKERS INDIVIDUALES EN ESPACIO NEGATIVO */
-var qs=$('quien'), skEls=[], skZ=10, skBuilt=false;
-var STICKER_DATA = [
-  {x:85,  y:125, w:225, h:205}, // Gorra rosa
-  {x:225, y:115, w:215, h:215}, // Bola disco
-  {x:365, y:160, w:230, h:260}, // Nota illustratte
-  {x:510, y:170, w:240, h:180}, // Cámara rosa
-  {x:655, y:160, w:160, h:220}, // Vaso matcha
-  {x:750, y:175, w:130, h:230}, // Rhode
-  {x:85,  y:320, w:240, h:215}, // Taza
-  {x:300, y:310, w:150, h:110}, // Cerezas
-  {x:235, y:420, w:480, h:140}, // Overworked
-  {x:505, y:385, w:130, h:130}, // Vinilo
-  {x:590, y:340, w:220, h:160}, // I love my job
-  {x:695, y:390, w:240, h:170}, // Macbook rosa
-  {x:140, y:545, w:250, h:145}, // Código de barra
-  {x:295, y:595, w:225, h:125}, // Lentes
-  {x:430, y:580, w:150, h:150}, // Flor
-  {x:525, y:580, w:85,  h:130}, // Flecha cursor
-  {x:565, y:495, w:130, h:185}, // Vaso Stanley
-  {x:115, y:725, w:150, h:155}, // Gato negro
-  {x:240, y:715, w:285, h:135}, // Peace
-  {x:450, y:715, w:305, h:185}  // Boarding pass
-];
-
-function getObstacles() {
-  var c = qs.getBoundingClientRect(), obs = [];
-  var padding = 20;
-  function addBox(r) {
-    if(r.width && r.height) {
-      obs.push([r.left - c.left - padding, r.top - c.top - padding, r.right - c.left + padding, r.bottom - c.top + padding]);
-    }
-  }
-  qs.querySelectorAll('h2, p, .cat, .cta, .btn').forEach(function(el) {
-    var rg = document.createRange();
-    rg.selectNodeContents(el);
-    var rects = rg.getClientRects();
-    for(var i=0; i<rects.length; i++) addBox(rects[i]);
-  });
-  return obs;
-}
-
-function hitTest(x, y, w, h, obs) {
-  var cw = qs.offsetWidth, ch = qs.offsetHeight;
-  if(x < 10 || y < 10 || (x + w) > (cw - 10) || (y + h) > (ch - 10)) return true;
-  for(var i=0; i<obs.length; i++){
-    var o = obs[i];
-    if(x < o[2] && (x + w) > o[0] && y < o[3] && (y + h) > o[1]) return true;
-  }
-  return false;
-}
-
-function skInit() {
-  skBuilt = true;
-  var naturalW = 1024, naturalH = 576; // Tamaño base del archivo de stickers
-  var scale = innerWidth <= 760 ? 0.35 : 0.48;
-  var obs = getObstacles();
-
-  STICKER_DATA.forEach(function(s, idx) {
-    var wrapper = document.createElement('div');
-    wrapper.className = 'sk';
-    
-    var w = Math.round(s.w * scale);
-    var h = Math.round(s.h * scale);
-    wrapper.style.width = w + 'px';
-    wrapper.style.height = h + 'px';
-    wrapper.style.setProperty('--r', ((Math.random() - 0.5) * 28).toFixed(1) + 'deg');
-
-    var inner = document.createElement('div');
-    inner.className = 'sk-inner';
-    var bgW = Math.round(naturalW * scale);
-    var bgH = Math.round(naturalH * scale);
-    var bgX = -Math.round(s.x * scale);
-    var bgY = -Math.round(s.y * scale);
-
-    inner.style.backgroundSize = bgW + 'px ' + bgH + 'px';
-    inner.style.backgroundPosition = bgX + 'px ' + bgY + 'px';
-    wrapper.appendChild(inner);
-
-    // Posicionamiento libre en el espacio negativo
-    var placed = false, tries = 0, posX = 20, posY = 20;
-    while(!placed && tries++ < 200) {
-      posX = Math.random() * (qs.offsetWidth - w - 20);
-      posY = Math.random() * (qs.offsetHeight - h - 20);
-      if(!hitTest(posX, posY, w, h, obs)) placed = true;
-    }
-    if(!placed) {
-      posX = (idx % 2 === 0) ? 15 : (qs.offsetWidth - w - 15);
-      posY = Math.min(qs.offsetHeight - h - 30, Math.max(50, idx * 65));
-    }
-
-    wrapper._x = posX;
-    wrapper._y = posY;
-    wrapper.style.left = posX + 'px';
-    wrapper.style.top = posY + 'px';
-
-    // Eventos para mover y arrastrar respetando los bloques de texto
-    wrapper.addEventListener('pointerdown', function(e) {
-      if(e.button) return;
-      e.preventDefault();
-      wrapper.setPointerCapture(e.pointerId);
-      wrapper.classList.add('drag');
-      wrapper.style.zIndex = ++skZ;
-      var currentObs = getObstacles();
-      var sx = e.clientX, sy = e.clientY, ox = wrapper._x, oy = wrapper._y;
-
-      function onMove(ev) {
-        var tx = ox + ev.clientX - sx;
-        var ty = oy + ev.clientY - sy;
-        if(!hitTest(tx, ty, w, h, currentObs)) {
-          wrapper._x = tx; wrapper._y = ty;
-          wrapper.style.left = tx + 'px';
-          wrapper.style.top = ty + 'px';
-        } else if(!hitTest(tx, wrapper._y, w, h, currentObs)) {
-          wrapper._x = tx;
-          wrapper.style.left = tx + 'px';
-        } else if(!hitTest(wrapper._x, ty, w, h, currentObs)) {
-          wrapper._y = ty;
-          wrapper.style.top = ty + 'px';
-        }
-      }
-
-      function onUp() {
-        wrapper.classList.remove('drag');
-        wrapper.removeEventListener('pointermove', onMove);
-        wrapper.removeEventListener('pointerup', onUp);
-        wrapper.removeEventListener('pointercancel', onUp);
-      }
-      wrapper.addEventListener('pointermove', onMove);
-      wrapper.addEventListener('pointerup', onUp);
-      wrapper.addEventListener('pointercancel', onUp);
-    });
-
-    qs.appendChild(wrapper);
-    skEls.push(wrapper);
-  });
-}
+/* SISTEMA ORIGINAL DE STICKERS DE NETLIFY */
+var qs=$('quien'),skEls=[],skZ=4,skW=0,
+SK=[[1,266,225],[2,224,226],[3,147,226],[4,66,81],[6,243,178],[7,129,236],[8,107,110],[9,254,216],[10,221,156],[11,124,123],[12,230,171],[13,485,147],[14,130,192],[15,249,143],[16,147,147],[17,81,119],[18,221,126],[19,292,139],[20,319,201],[21,138,143]],
+STACK=[];
+function skObs(){var c=qs.getBoundingClientRect(),o=[];
+  function add(r,m){if(r.width&&r.height)o.push([r.left-c.left-m,r.top-c.top-m,r.right-c.left+m,r.bottom-c.top+m])}
+  qs.querySelectorAll('h2,p').forEach(function(e){var rg=document.createRange();rg.selectNodeContents(e);[].forEach.call(rg.getClientRects(),function(r){add(r,12)})});
+  var ab=qs.querySelector('.about').getBoundingClientRect(),ct=qs.querySelector('.cta').getBoundingClientRect();
+  o.push([-9999,-9999,9999,ab.top-c.top]);o.push([-9999,ct.top-c.top,9999,9999]);
+  qs.querySelectorAll('.btn,.cta a').forEach(function(e){add(e.getBoundingClientRect(),12)});
+  return o}
+function skHit(x,y,w,h,o){var cw=qs.offsetWidth,ch=qs.offsetHeight;
+  if(x<0||y<0||x+w>cw||y+h>ch)return true;
+  for(var i=0;i<o.length;i++){var r=o[i];if(x+5<r[2]&&x+w-5>r[0]&&y+5<r[3]&&y+h-5>r[1])return true}
+  return false}
+function skPut(el,x,y){el._x=x;el._y=y;el.style.left=x+'px';el.style.top=y+'px'}
+function skRnd(){skSeed=(skSeed*16807)%2147483647;return skSeed/2147483647}
+var skSeed=7;
+function skLayout(){
+  var k=innerWidth<=760?.294:.385,o=skObs(),c=qs.getBoundingClientRect(),t=$('tray').getBoundingClientRect(),
+  tx=t.left-c.left,ty=t.top-c.top,placed=[];skSeed=7;
+  skEls.forEach(function(el,i){var d=SK[i];el.style.width=d[1]*k+'px';el.style.height=d[2]*k+'px';el._w=d[1]*k;el._h=d[2]*k;
+    el.style.setProperty('--r',((skRnd()-.5)*36).toFixed(1)+'deg')});
+  function inTray(el,spread){var x=tx+(t.width-el._w)/2+(skRnd()-.5)*spread,y=ty+(t.height-el._h)/2+(skRnd()-.5)*spread;
+    x=Math.max(tx,Math.min(tx+t.width-el._w,x));y=Math.max(ty,Math.min(ty+t.height-el._h,y));skPut(el,x,y);placed.push(el)}
+  STACK.forEach(function(n,j){var el=skEls[n-1];el.style.zIndex=4+j;inTray(el,Math.min(t.width,t.height)*.5)});
+  skEls.forEach(function(el,i){if(STACK.indexOf(i+1)>-1)return;
+    var ok=false,tries=0,x,y;
+    while(!ok&&tries++<150){x=skRnd()*(qs.offsetWidth-el._w);y=skRnd()*(qs.offsetHeight-el._h);
+      if(skHit(x,y,el._w,el._h,o))continue;
+      ok=tries>100||!placed.some(function(p){return x<p._x+p._w+14&&x+el._w+14>p._x&&y<p._y+p._h+14&&y+el._h+14>p._y})}
+    if(ok){skPut(el,x,y);placed.push(el)}else inTray(el,Math.max(t.width,t.height))})}
+function skBuild(){SK.forEach(function(d){var im=new Image();im.src='stickers/s'+('0'+d[0]).slice(-2)+'.png';im.alt='';im.className='sk';im.draggable=false;im.setAttribute('aria-hidden','true');
+  im.addEventListener('pointerdown',function(e){if(e.button)return;e.preventDefault();im.setPointerCapture(e.pointerId);im.classList.add('drag');im.style.zIndex=++skZ;
+    var o=skObs(),sx=e.clientX,sy=e.clientY,ox=im._x,oy=im._y;
+    function mv(ev){var tx=ox+ev.clientX-sx,ty=oy+ev.clientY-sy,dx=tx-im._x,dy=ty-im._y,n=Math.ceil(Math.max(Math.abs(dx),Math.abs(dy))/6);
+      for(var i=1;i<=n;i++){var nx=im._x+dx/n,ny=im._y+dy/n;
+        if(!skHit(nx,ny,im._w,im._h,o))skPut(im,nx,ny);
+        else if(!skHit(nx,im._y,im._w,im._h,o))skPut(im,nx,im._y);
+        else if(!skHit(im._x,ny,im._w,im._h,o))skPut(im,im._x,ny);
+        else break}}
+    function up(){im.classList.remove('drag');im.removeEventListener('pointermove',mv);im.removeEventListener('pointerup',up);im.removeEventListener('pointercancel',up)}
+    im.addEventListener('pointermove',mv);im.addEventListener('pointerup',up);im.addEventListener('pointercancel',up)});
+  qs.appendChild(im);skEls.push(im)})}
+function skShow(){if(!skEls.length)skBuild();requestAnimationFrame(function(){skW=innerWidth;skLayout()})}
+addEventListener('resize',function(){if(qs.classList.contains('on')&&innerWidth!==skW&&skEls.length){skW=innerWidth;skLayout()}});
 
 go();
 </script>
