@@ -143,6 +143,7 @@ footer{background:var(--nav);color:var(--navink);text-align:center;padding:28px 
 #quien h2,#quien p,#quien .wt,#quien .about{position:relative;z-index:2}
 .sk{position:absolute;left:0;top:0;z-index:3;cursor:grab;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-user-drag:none;transform:rotate(var(--r,0deg));filter:drop-shadow(0 4px 10px rgba(0,0,0,0.30));transition:filter .15s}
 .sk.drag{cursor:grabbing;z-index:10!important;filter:drop-shadow(0 14px 22px rgba(0,0,0,0.40)) scale(1.05)}
+.sk-inner{width:100%;height:100%;background-image:url('img/stickers.png');background-repeat:no-repeat;mix-blend-mode:multiply}
 
 @media (max-width:760px){
 .hero{grid-template-columns:1fr;gap:32px;padding-top:32px}
@@ -387,35 +388,34 @@ if(matchMedia('(hover:hover) and (pointer:fine)').matches&&!matchMedia('(prefers
   });
 }
 
-/* SISTEMA DE STICKERS DINÁMICOS CON DETECCIÓN DE ESPACIO NEGATIVO */
+/* SISTEMA DE STICKERS INDIVIDUALES EN ESPACIO NEGATIVO */
 var qs=$('quien'), skEls=[], skZ=10, skBuilt=false;
-// Coordenadas [x, y, w, h] relativas a img/stickers.jpg (1920x1080)
-var STICKER_BOXES = [
-  [85, 125, 225, 205],   // Gorra rosa "exotic thinker"
-  [225, 115, 215, 215],  // Bola disco
-  [365, 160, 230, 260],  // Nota "illustratte"
-  [510, 170, 240, 180],  // Cámara rosa
-  [655, 160, 160, 220],  // Vaso matcha verde
-  [750, 175, 130, 230],  // Crema Rhode
-  [85, 320, 240, 215],   // Taza "i hate explaining"
-  [300, 310, 150, 110],  // Cerezas
-  [235, 420, 480, 140],  // Overworked
-  [505, 385, 130, 130],  // Vinilo
-  [590, 340, 220, 160],  // I love my job
-  [695, 390, 240, 170],  // Macbook rosa
-  [140, 545, 250, 145],  // Código de barra
-  [295, 595, 225, 125],  // Lentes negros
-  [430, 580, 150, 150],  // Flor lima
-  [525, 580, 85, 130],   // Cursor flecha
-  [565, 495, 130, 185],  // Vaso térmico Stanley rosa
-  [115, 725, 150, 155],  // Gato negro
-  [240, 715, 285, 135],  // Peace oval
-  [450, 715, 305, 185]   // Boarding pass
+var STICKER_DATA = [
+  {x:85,  y:125, w:225, h:205}, // Gorra rosa
+  {x:225, y:115, w:215, h:215}, // Bola disco
+  {x:365, y:160, w:230, h:260}, // Nota illustratte
+  {x:510, y:170, w:240, h:180}, // Cámara rosa
+  {x:655, y:160, w:160, h:220}, // Vaso matcha
+  {x:750, y:175, w:130, h:230}, // Rhode
+  {x:85,  y:320, w:240, h:215}, // Taza
+  {x:300, y:310, w:150, h:110}, // Cerezas
+  {x:235, y:420, w:480, h:140}, // Overworked
+  {x:505, y:385, w:130, h:130}, // Vinilo
+  {x:590, y:340, w:220, h:160}, // I love my job
+  {x:695, y:390, w:240, h:170}, // Macbook rosa
+  {x:140, y:545, w:250, h:145}, // Código de barra
+  {x:295, y:595, w:225, h:125}, // Lentes
+  {x:430, y:580, w:150, h:150}, // Flor
+  {x:525, y:580, w:85,  h:130}, // Flecha cursor
+  {x:565, y:495, w:130, h:185}, // Vaso Stanley
+  {x:115, y:725, w:150, h:155}, // Gato negro
+  {x:240, y:715, w:285, h:135}, // Peace
+  {x:450, y:715, w:305, h:185}  // Boarding pass
 ];
 
 function getObstacles() {
   var c = qs.getBoundingClientRect(), obs = [];
-  var padding = 16;
+  var padding = 20;
   function addBox(r) {
     if(r.width && r.height) {
       obs.push([r.left - c.left - padding, r.top - c.top - padding, r.right - c.left + padding, r.bottom - c.top + padding]);
@@ -442,96 +442,88 @@ function hitTest(x, y, w, h, obs) {
 
 function skInit() {
   skBuilt = true;
-  var sheet = new Image();
-  sheet.src = 'img/stickers.jpg';
-  sheet.onload = function() {
-    var obs = getObstacles();
-    var scale = innerWidth <= 760 ? 0.38 : 0.52;
+  var naturalW = 1024, naturalH = 576; // Tamaño base del archivo de stickers
+  var scale = innerWidth <= 760 ? 0.35 : 0.48;
+  var obs = getObstacles();
 
-    STICKER_BOXES.forEach(function(box, idx) {
-      var bx = box[0], by = box[1], bw = box[2], bh = box[3];
-      var cv = document.createElement('canvas');
-      cv.width = bw;
-      cv.height = bh;
-      var ctx = cv.getContext('2d');
-      ctx.drawImage(sheet, bx, by, bw, bh, 0, 0, bw, bh);
+  STICKER_DATA.forEach(function(s, idx) {
+    var wrapper = document.createElement('div');
+    wrapper.className = 'sk';
+    
+    var w = Math.round(s.w * scale);
+    var h = Math.round(s.h * scale);
+    wrapper.style.width = w + 'px';
+    wrapper.style.height = h + 'px';
+    wrapper.style.setProperty('--r', ((Math.random() - 0.5) * 28).toFixed(1) + 'deg');
 
-      // Limpieza del fondo negro a transparencia pura
-      var imgData = ctx.getImageData(0, 0, bw, bh);
-      var d = imgData.data;
-      for(var i=0; i<d.length; i+=4) {
-        if(d[i] < 35 && d[i+1] < 35 && d[i+2] < 35) d[i+3] = 0;
-      }
-      ctx.putImageData(imgData, 0, 0);
+    var inner = document.createElement('div');
+    inner.className = 'sk-inner';
+    var bgW = Math.round(naturalW * scale);
+    var bgH = Math.round(naturalH * scale);
+    var bgX = -Math.round(s.x * scale);
+    var bgY = -Math.round(s.y * scale);
 
-      var img = new Image();
-      img.src = cv.toDataURL();
-      img.className = 'sk';
-      var w = Math.round(bw * scale);
-      var h = Math.round(bh * scale);
-      img.style.width = w + 'px';
-      img.style.height = h + 'px';
-      img.style.setProperty('--r', ((Math.random() - 0.5) * 32).toFixed(1) + 'deg');
+    inner.style.backgroundSize = bgW + 'px ' + bgH + 'px';
+    inner.style.backgroundPosition = bgX + 'px ' + bgY + 'px';
+    wrapper.appendChild(inner);
 
-      // Buscar posición libre en el espacio negativo
-      var placed = false, tries = 0, posX = 20, posY = 20;
-      while(!placed && tries++ < 250) {
-        posX = Math.random() * (qs.offsetWidth - w - 20);
-        posY = Math.random() * (qs.offsetHeight - h - 20);
-        if(!hitTest(posX, posY, w, h, obs)) placed = true;
-      }
-      if(!placed) {
-        posX = (idx % 2 === 0) ? 20 : (qs.offsetWidth - w - 20);
-        posY = Math.min(qs.offsetHeight - h - 30, Math.max(40, idx * 80));
-      }
+    // Posicionamiento libre en el espacio negativo
+    var placed = false, tries = 0, posX = 20, posY = 20;
+    while(!placed && tries++ < 200) {
+      posX = Math.random() * (qs.offsetWidth - w - 20);
+      posY = Math.random() * (qs.offsetHeight - h - 20);
+      if(!hitTest(posX, posY, w, h, obs)) placed = true;
+    }
+    if(!placed) {
+      posX = (idx % 2 === 0) ? 15 : (qs.offsetWidth - w - 15);
+      posY = Math.min(qs.offsetHeight - h - 30, Math.max(50, idx * 65));
+    }
 
-      img._x = posX;
-      img._y = posY;
-      img.style.left = posX + 'px';
-      img.style.top = posY + 'px';
+    wrapper._x = posX;
+    wrapper._y = posY;
+    wrapper.style.left = posX + 'px';
+    wrapper.style.top = posY + 'px';
 
-      // Drag and drop interactivo respetando zonas de texto
-      img.addEventListener('pointerdown', function(e) {
-        if(e.button) return;
-        e.preventDefault();
-        img.setPointerCapture(e.pointerId);
-        img.classList.add('drag');
-        img.style.zIndex = ++skZ;
-        var currentObs = getObstacles();
-        var sx = e.clientX, sy = e.clientY, ox = img._x, oy = img._y;
+    // Eventos para mover y arrastrar respetando los bloques de texto
+    wrapper.addEventListener('pointerdown', function(e) {
+      if(e.button) return;
+      e.preventDefault();
+      wrapper.setPointerCapture(e.pointerId);
+      wrapper.classList.add('drag');
+      wrapper.style.zIndex = ++skZ;
+      var currentObs = getObstacles();
+      var sx = e.clientX, sy = e.clientY, ox = wrapper._x, oy = wrapper._y;
 
-        function onMove(ev) {
-          var tx = ox + ev.clientX - sx;
-          var ty = oy + ev.clientY - sy;
-          // Si colisiona con el texto, detiene el movimiento en esa dirección
-          if(!hitTest(tx, ty, w, h, currentObs)) {
-            img._x = tx; img._y = ty;
-            img.style.left = tx + 'px';
-            img.style.top = ty + 'px';
-          } else if(!hitTest(tx, img._y, w, h, currentObs)) {
-            img._x = tx;
-            img.style.left = tx + 'px';
-          } else if(!hitTest(img._x, ty, w, h, currentObs)) {
-            img._y = ty;
-            img.style.top = ty + 'px';
-          }
+      function onMove(ev) {
+        var tx = ox + ev.clientX - sx;
+        var ty = oy + ev.clientY - sy;
+        if(!hitTest(tx, ty, w, h, currentObs)) {
+          wrapper._x = tx; wrapper._y = ty;
+          wrapper.style.left = tx + 'px';
+          wrapper.style.top = ty + 'px';
+        } else if(!hitTest(tx, wrapper._y, w, h, currentObs)) {
+          wrapper._x = tx;
+          wrapper.style.left = tx + 'px';
+        } else if(!hitTest(wrapper._x, ty, w, h, currentObs)) {
+          wrapper._y = ty;
+          wrapper.style.top = ty + 'px';
         }
+      }
 
-        function onUp() {
-          img.classList.remove('drag');
-          img.removeEventListener('pointermove', onMove);
-          img.removeEventListener('pointerup', onUp);
-          img.removeEventListener('pointercancel', onUp);
-        }
-        img.addEventListener('pointermove', onMove);
-        img.addEventListener('pointerup', onUp);
-        img.addEventListener('pointercancel', onUp);
-      });
-
-      qs.appendChild(img);
-      skEls.push(img);
+      function onUp() {
+        wrapper.classList.remove('drag');
+        wrapper.removeEventListener('pointermove', onMove);
+        wrapper.removeEventListener('pointerup', onUp);
+        wrapper.removeEventListener('pointercancel', onUp);
+      }
+      wrapper.addEventListener('pointermove', onMove);
+      wrapper.addEventListener('pointerup', onUp);
+      wrapper.addEventListener('pointercancel', onUp);
     });
-  };
+
+    qs.appendChild(wrapper);
+    skEls.push(wrapper);
+  });
 }
 
 go();
