@@ -30,7 +30,7 @@ h1,h2,h3{margin:0;font-weight:700;letter-spacing:-.05em;line-height:.95}
 .ring svg.t{position:absolute;inset:0;width:100%;height:100%;animation:spin 30s linear infinite}
 .ring text{font-size:12.5px;font-weight:700;fill:var(--ink)}
 .portrait{position:absolute;inset:17%;border-radius:50%;background:var(--accent);box-shadow:0 0 0 6px var(--lime);display:grid;place-items:center;overflow:hidden;color:#fff}
-.portrait img{width:100%;height:100%;object-fit:cover;object-position:center 15%;transform:scale(1.15)}
+.portrait img{width:100%;height:100%;object-fit:cover;object-position:center 10%;transform:scale(1.65);transform-origin:center 20%}
 @keyframes spin{to{transform:rotate(360deg)}}
 h1{font-size:clamp(46px,8vw,88px)}
 .rule{width:56px;height:3px;background:var(--ink);margin:28px 0 18px}
@@ -45,7 +45,7 @@ h1{font-size:clamp(46px,8vw,88px)}
 .cv{list-style:none;margin:40px 0 0;padding:0}
 .cv li{display:flex;justify-content:space-between;gap:24px;padding:20px 0;border-bottom:1px solid var(--tint);font-size:22px;letter-spacing:-.03em}
 .cv span{color:var(--soft);font-size:16px;text-align:right}
-.txt p{margin:0 0 20px;font-size:20px;line-height:1.45;max-width:60ch}
+.txt p{margin:0 0 20px;font-size:20px;line-height:1.45;max-width:60ch;text-align:justify;text-justify:inter-word}
 .txt b{font-weight:700}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
 .chips span{border:2px solid var(--pinkd);border-radius:99px;padding:5px 14px;font-size:15px}
@@ -59,7 +59,7 @@ dialog::backdrop{background:rgba(31,17,13,.6);backdrop-filter:blur(6px)}
 .dlgin{max-height:calc(100vh - 48px);overflow-y:auto;padding:56px 72px 64px}
 .dlgin h2{font-size:clamp(44px,7vw,84px);padding-right:56px}
 .dlgin .cat2{margin:14px 0 28px;display:inline-block;background:var(--lime);color:var(--onacc);padding:2px 12px;border-radius:6px;font-weight:700;font-size:20px;letter-spacing:-.02em}
-.dlgin p{font-size:19px;line-height:1.55;max-width:70ch;margin:0 0 20px}
+.dlgin p{font-size:19px;line-height:1.55;max-width:70ch;margin:0 0 20px;text-align:justify;text-justify:inter-word}
 .dlgin h4{margin:36px 0 14px;font-size:24px;font-weight:700;letter-spacing:-.04em}
 .dlgin .gl{margin:28px 0 0;font-weight:700;font-size:20px;letter-spacing:-.02em}
 .dlgin .fn{margin:12px 0 0;font-size:13px;color:var(--soft)}
@@ -68,9 +68,9 @@ dialog::backdrop{background:rgba(31,17,13,.6);backdrop-filter:blur(6px)}
 .pcs{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
 .pcs img,.pcs video{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:18px;border:2px solid var(--pinkd);background:#000}
 .x{position:absolute;top:22px;right:22px;z-index:2;width:48px;height:48px;border:0;border-radius:50%;background:var(--accent);color:var(--onacc);font-size:26px;line-height:1;font-weight:700;cursor:pointer}
-.wt{margin-top:96px}
+.wt{margin-top:36px}
 .wt h2{font-size:clamp(30px,4.4vw,54px)}
-.wt .txt p{font-size:16px;line-height:1.5}
+.wt .txt p{font-size:16px;line-height:1.5;text-align:justify;text-justify:inter-word}
 .tilt{display:inline-block;white-space:nowrap;background:var(--lime);color:var(--onacc);padding:.02em .16em .1em;margin:.04em 0 0 -.04em;transform:rotate(-2.4deg)}
 .tilt.pk{background:var(--accent)}
 .cta{background:var(--nav);color:var(--navink);padding:96px 24px;position:relative;z-index:4}
@@ -89,9 +89,9 @@ dialog::backdrop{background:rgba(31,17,13,.6);backdrop-filter:blur(6px)}
 section.w{max-width:1100px;margin:auto;padding:96px 24px;position:relative}
 h2{font-size:clamp(38px,5.5vw,68px)}
 h3{font-size:clamp(28px,3.6vw,42px)}
-.lead{max-width:56ch;color:var(--soft);margin:20px 0 0}
+.lead{max-width:900px;color:var(--soft);margin:20px 0 0;text-align:justify;text-justify:inter-word}
 .lead b{color:var(--ink)}
-.lead.tight{line-height:1.25}
+.lead.tight{line-height:1.35}
 .sub{margin:80px 0 0}
 .tools{width:100vw;margin:48px 0 0 calc(50% - 50vw);background:var(--accent);padding:14px 0;overflow:hidden}
 .tools div{display:flex;gap:28px;align-items:center;width:max-content;animation:mq 60s linear infinite}
@@ -138,12 +138,12 @@ footer{background:var(--nav);color:var(--navink);text-align:center;padding:28px 
 .cur{position:fixed;left:0;top:0;width:28px;height:28px;border:2px solid var(--pinkd);border-radius:50%;pointer-events:none;opacity:0;z-index:20;transition:width .15s,height .15s,margin .15s}
 .cur.big{width:48px;height:48px;margin:-10px 0 0 -10px}
 
-/* STICKERS EN QUIEN SOY */
+/* STICKERS EN QUIEN SOY CON SOMBRA -30% */
 #quien{position:relative;overflow:hidden}
-.tray{min-height:220px}
+.tray{min-height:180px}
 #quien>section.w{padding-bottom:24px}
-.sk{position:absolute;left:0;top:0;z-index:3;cursor:grab;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-user-drag:none;transform:rotate(var(--r,0deg));filter:drop-shadow(0 4px 10px rgba(0,0,0,0.30));transition:filter .15s}
-.sk.drag{cursor:grabbing;z-index:10!important;filter:drop-shadow(0 14px 22px rgba(0,0,0,0.40)) scale(1.05)}
+.sk{position:absolute;left:0;top:0;z-index:3;cursor:grab;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-user-drag:none;transform:rotate(var(--r,0deg));filter:drop-shadow(0 3px 7px rgba(0,0,0,0.21));transition:filter .15s}
+.sk.drag{cursor:grabbing;z-index:10!important;filter:drop-shadow(0 10px 16px rgba(0,0,0,0.28)) scale(1.05)}
 
 @media (max-width:760px){
 .hero{grid-template-columns:1fr;gap:32px;padding-top:32px}
@@ -151,7 +151,8 @@ nav{gap:16px}nav a{font-size:14px}
 .proc,.about,.pjs,.steps,.abt,.cvw{grid-template-columns:1fr}.cv li{flex-direction:column;gap:4px}.cv span{text-align:left}.step:last-child{grid-column:auto}
 .row{grid-template-columns:1fr 1fr}.ph{display:none}
 .dlgin{padding:44px 24px 32px}
-.tray{min-height:260px}}
+.tray{min-height:220px}
+.lead{text-align:left}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.ring svg.t,.tools div,.spin{animation:none}.tools{overflow-x:auto}}
 </style>
 </head>
@@ -218,11 +219,11 @@ nav{gap:16px}nav a{font-size:14px}
 <section class="w">
 <div class="about">
 <div><h2>Quién soy</h2>
-<p class="lead">Soy community manager en Buenos Aires y estudio la Licenciatura en Publicidad en UADE. Me gusta que cada marca suene a sí misma, con ideas claras y resultados que se puedan medir.</p></div>
+<p class="lead" style="margin-top:14px">Soy community manager en Buenos Aires y estudio la Licenciatura en Publicidad en UADE. Me gusta que cada marca suene a sí misma, con ideas claras y resultados que se puedan medir.</p></div>
 <div class="tray" id="tray" aria-hidden="true"></div>
 </div>
 <div class="wt"><h2>Work and <span class="tilt pk">Travel</span></h2><p class="cat">Alemania</p>
-<div class="txt" style="margin-top:28px">
+<div class="txt" style="margin-top:20px">
 <p>Entre enero y marzo de 2026 tuve la oportunidad de participar en un programa de Work &amp; Travel con destino Alemania, donde trabajé en Elmar Jung Product Solutions, una de las principales compañías de logística ubicada en Neunkirchen, Saar.</p>
 <p>En esta experiencia no solo tuve la oportunidad de trabajar y conocer una cultura completamente distinta, sino también de desarrollar habilidades a nivel personal y profesional. Aprender a adaptarme a un nuevo entorno, comunicarme en otro idioma, resolver situaciones fuera de mi zona de confort y convivir con personas de diferentes partes del mundo fueron desafíos que me permitieron crecer, ganar independencia y ampliar mi perspectiva.</p>
 <p>Fuera del trabajo, la experiencia fue increíble: hice amigos de todo el mundo, aprendí a comunicarme en situaciones donde el idioma común muchas veces era el alemán, y entendí lo que significa adaptarse rápido a culturas y formas de vivir diferentes a las mías. Esta etapa fortaleció mi manejo de idiomas y mi interés por seguir formándome en contextos internacionales.</p>
@@ -390,7 +391,7 @@ if(matchMedia('(hover:hover) and (pointer:fine)').matches&&!matchMedia('(prefers
   });
 }
 
-/* SISTEMA ORIGINAL DE STICKERS DE NETLIFY */
+/* SISTEMA MATEMÁTICO DE STICKERS DE NETLIFY CON SOMBRA -30% */
 var qs=$('quien'),skEls=[],skZ=4,skW=0,
 SK=[[1,266,225],[2,224,226],[3,147,226],[4,66,81],[6,243,178],[7,129,236],[8,107,110],[9,254,216],[10,221,156],[11,124,123],[12,230,171],[13,485,147],[14,130,192],[15,249,143],[16,147,147],[17,81,119],[18,221,126],[19,292,139],[20,319,201],[21,138,143]],
 STACK=[];
