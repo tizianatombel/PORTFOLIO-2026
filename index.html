@@ -66,7 +66,8 @@ dialog::backdrop{background:rgba(31,17,13,.6);backdrop-filter:blur(6px)}
 .pills{display:flex;flex-wrap:wrap;gap:10px}
 .pills span{border:2px solid var(--ink);border-radius:99px;padding:6px 18px;font-size:15px;text-transform:uppercase}
 .pcs{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
-.pcs img,.pcs video{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:18px;border:2px solid var(--pinkd);background:#000}
+.pcs img,.pcs video{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:18px;border:2px solid var(--pinkd);background:#000;cursor:pointer;transition:transform .2s ease}
+.pcs img:hover,.pcs video:hover{transform:scale(1.02)}
 .x{position:absolute;top:22px;right:22px;z-index:2;width:48px;height:48px;border:0;border-radius:50%;background:var(--accent);color:var(--onacc);font-size:26px;line-height:1;font-weight:700;cursor:pointer}
 .wt{margin-top:36px}
 .wt h2{font-size:clamp(30px,4.4vw,54px)}
@@ -75,6 +76,21 @@ dialog::backdrop{background:rgba(31,17,13,.6);backdrop-filter:blur(6px)}
 /* ESTILOS DE TILT AJUSTADOS */
 .tilt{display:inline-block;width:fit-content;max-width:max-content;white-space:nowrap;background:var(--lime);color:var(--onacc);padding:.04em .18em .08em;margin:0;transform:rotate(-2deg);vertical-align:baseline}
 .tilt.pk{background:var(--accent)}
+
+/* ENLACES A REDES Y LOGOS */
+.sub-row{display:flex;align-items:center;gap:16px;margin-top:80px;flex-wrap:wrap}
+.sub-row .sub{margin:0}
+.soc-links{display:inline-flex;align-items:center;gap:10px}
+.soc-btn{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;background:var(--tint);border:1.5px solid var(--pinkd);color:var(--ink);transition:all .2s ease;text-decoration:none}
+.soc-btn:hover{background:var(--lime);border-color:var(--lime);transform:translateY(-2px)}
+.soc-btn svg{width:18px;height:18px;fill:currentColor}
+
+/* MODAL DE VISOR DE PIEZAS A PANTALLA COMPLETA */
+#media-viewer{border:0;padding:0;background:transparent;max-width:92vw;max-height:90vh;outline:none;overflow:visible}
+#media-viewer::backdrop{background:rgba(31,17,13,.85);backdrop-filter:blur(8px)}
+.viewer-box{position:relative;display:flex;align-items:center;justify-content:center;max-width:90vw;max-height:85vh}
+.viewer-box img,.viewer-box video{max-width:90vw;max-height:85vh;border-radius:18px;box-shadow:0 20px 40px rgba(0,0,0,.5);border:2px solid var(--pinkd);background:#000;object-fit:contain}
+.viewer-close{position:absolute;top:-20px;right:-20px;width:42px;height:42px;border-radius:50%;background:var(--lime);color:var(--onacc);border:2px solid var(--ink);font-size:24px;font-weight:700;display:grid;place-items:center;cursor:pointer;z-index:10}
 
 /* CTA TRABAJEMOS JUNTOS */
 .cta{background:var(--nav);color:var(--navink);padding:96px 24px;position:relative;z-index:4}
@@ -98,7 +114,7 @@ h3{font-size:clamp(28px,3.6vw,42px)}
 .lead{max-width:900px;color:var(--soft);margin:20px 0 0;text-align:justify;text-justify:inter-word}
 .lead b{color:var(--ink)}
 .lead.tight{line-height:1.35}
-.sub{margin:80px 0 0}
+.sub{margin:0}
 .tools{width:100vw;margin:48px 0 0 calc(50% - 50vw);background:var(--accent);padding:14px 0;overflow:hidden}
 .tools div{display:flex;gap:28px;align-items:center;width:max-content;animation:mq 60s linear infinite}
 .tools span{color:var(--onacc);font-weight:700;font-size:15px;white-space:nowrap}
@@ -131,9 +147,10 @@ h3{font-size:clamp(28px,3.6vw,42px)}
 .av{width:22px;height:22px;border-radius:50%;background:var(--accent);flex:none}
 .gr{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;flex:1}
 .gr i{background:var(--tint)}
-.post,.pj i{border:2px solid var(--pinkd);border-radius:14px;overflow:hidden}
-.post{aspect-ratio:4/5;display:block;position:relative}
-.post img,.post video{width:100%;height:100%;object-fit:cover;display:block}
+.post,.pj i{border:2px solid var(--pinkd);border-radius:14px;overflow:hidden;cursor:pointer;position:relative}
+.post{aspect-ratio:4/5;display:block}
+.post img,.post video{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s ease}
+.post:hover img,.post:hover video{transform:scale(1.04)}
 .pjs{display:grid;grid-template-columns:1fr 1fr;gap:40px 24px;margin-top:48px}
 .pj i{display:block;aspect-ratio:16/10;font-style:normal}
 .pj i img,.pj i video{width:100%;height:100%;object-fit:cover;display:block}
@@ -214,11 +231,9 @@ nav{gap:16px}nav a{font-size:14px}
 .sk:hover:not(.drag){transform:rotate(calc(var(--r,0deg) + 8deg)) scale(1.07)}
 .js-anim dialog[open]{animation:dpop .38s cubic-bezier(.2,1.2,.4,1)}
 .js-anim dialog[open]::backdrop{animation:fade .3s}
-@keyframes ribbon{from{transform:translateX(-100%)}}
 @keyframes cell{from{opacity:0;transform:scale(.4)}}
 @keyframes drift{50%{translate:0 -6px}}
 .js-anim .rv.nt{transition:none}
-.js-anim .page.on .tools{animation:ribbon .9s cubic-bezier(.2,.8,.2,1) .25s backwards}
 .js-anim .cal.in .cg>div{animation:cell .4s cubic-bezier(.3,1.5,.5,1) calc(var(--c,0)*16ms) backwards}
 .js-anim .pj.rv:nth-child(odd){transform:translateX(-48px) rotate(-2.5deg)}
 .js-anim .pj.rv:nth-child(even){transform:translateX(48px) rotate(2.5deg)}
@@ -271,7 +286,7 @@ nav{gap:16px}nav a{font-size:14px}
 <section class="w page" id="social">
 <h2>Social Media</h2>
 <p class="lead tight">Manejo las redes de una marca de punta a punta: <b>estrategia por red, plan de contenidos, copys, comunidad y reportes mensuales</b>, siempre con la voz propia de cada cuenta.</p>
-<h3 class="sub">Herramientas</h3>
+<h3 class="sub" style="margin-top:48px">Herramientas</h3>
 <div class="tools" aria-label="Herramientas"><div id="tl"></div></div>
 <h3 class="sub" style="margin-top:56px">Proceso Social Media</h3>
 <div class="proc">
@@ -329,7 +344,17 @@ nav{gap:16px}nav a{font-size:14px}
     <path d="M50 6 61.17 38.63 95.65 39.17 68.07 59.87 78.21 92.83 50 73 21.79 92.83 31.93 59.87 4.35 39.17 38.83 38.63Z"/>
   </svg>
 </div>
+
+<!-- Modal principal para proceso de proyectos -->
 <dialog id="dlg" aria-label="Proceso del proyecto"><button class="x" id="x" aria-label="Cerrar">×</button><div class="dlgin" id="dc"></div></dialog>
+
+<!-- Modal visor interactivo de piezas a pantalla completa -->
+<dialog id="media-viewer">
+  <div class="viewer-box">
+    <button class="viewer-close" id="vx" aria-label="Cerrar visor">×</button>
+    <div id="viewer-content"></div>
+  </div>
+</dialog>
 
 <script>
 var $=function(i){return document.getElementById(i)};
@@ -340,10 +365,15 @@ var feed=[2,6,9,13,16,20,23,27,30],st=[1,3,5,8,12,14,19,22,26,29];
 for(var d=1;d<=31;d++){cg+='<div>'+d+(feed.indexOf(d)>-1?'<u>Feed</u>':st.indexOf(d)>-1?'<u class="k">Story</u>':'')+'</div>'}
 $('cg').innerHTML=cg;
 
+/* SVGs de logos sociales */
+var igSvg = '<svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>';
+var ttSvg = '<svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>';
+
 var feeds=[
 {
   t:'Moxey',
   c:'Marca de indumentaria',
+  ig:'moxey.oficial',
   s:[['+72k','cuentas alcanzadas*'],['+212k','views al perfil'],['+5k','interacciones']],
   d:'En Moxey, marca de indumentaria urbana mayorista/minorista con base en Flores, realizo la estrategia de contenido y gestión de la comunidad en redes sociales. Soy responsable de la planificación y creación de contenido para Instagram, incluyendo el manejo de mensajes, respuestas a comentarios y apoyo al equipo creativo para producciones y jornadas de grabación.',
   n:'MOXEY',
@@ -357,6 +387,7 @@ var feeds=[
 {
   t:'Narguilas Córdoba',
   c:'Comercio de hookah y tabaquería',
+  ig:'narguilascordoba_',
   s:[['+425k','cuentas alcanzadas*'],['+1,1M','views al perfil'],['+9k','interacciones']],
   d:'En Narguilas Córdoba, hookah lounge y comercio con sucursales en Córdoba y una en Palermo, mi rol incluye la creación de contenido y gestión de marca en redes sociales. Soy responsable de la planificación creativa y la producción de contenido en Instagram y TikTok.',
   n:'NARGUILAS',
@@ -370,6 +401,8 @@ var feeds=[
 {
   t:'Manfroni Casa',
   c:'Casa de mueblería italiana',
+  ig:'manfronicasa',
+  s:[['+84k','cuentas alcanzadas*'],['+229k','visualizaciones'],['+23k','seguidores consolidados']],
   d:'En Manfroni Casa, showroom de diseño italiano premium en Puerto Madero, lideré la estrategia de contenido para redes sociales. Mis tareas incluyeron la planificación de contenido, edición de piezas estáticas y videos y planificación de calendario.',
   n:'MANFRONI',
   p:[
@@ -378,10 +411,28 @@ var feeds=[
     {t:'Detalles & Texturas', f:'img/manfroni-2.png', v:false},
     {t:'Asesoramiento en vivo', f:'video/manfroni-vid2.mp4', v:true}
   ]
+},
+{
+  t:'Bohemio Bags',
+  c:'Emprendimiento de bolsos y totebags',
+  ig:'bohemio____',
+  d:'En Bohemio Bags, emprendimiento de bolsos y tote bags artesanales, lideré durante 6 meses la estrategia de contenido y gestión de la marca en entornos digitales para Instagram, TikTok y Pinterest.',
+  n:'BOHEMIO',
+  p:[
+    {t:'Identidad de marca', f:'img/glase-1.png', v:false},
+    {t:'Proceso artesanal', f:'video/glase-vid1.mp4', v:true},
+    {t:'Detalles de diseño', f:'img/glase-2.png', v:false},
+    {t:'Lookbook en video', f:'video/glase-vid2.mp4', v:true}
+  ]
 }];
 
 $('feeds').innerHTML=feeds.map(function(f){
-  return '<h3 class="sub">'+f.t+'</h3><p class="cat">'+f.c+'</p>'+
+  var socHtml = '<div class="soc-links">';
+  if(f.ig) socHtml += '<a class="soc-btn" href="https://instagram.com/'+f.ig+'" target="_blank" rel="noopener" aria-label="Instagram de '+f.t+'">'+igSvg+'</a>';
+  if(f.tt) socHtml += '<a class="soc-btn" href="https://tiktok.com/@'+f.tt+'" target="_blank" rel="noopener" aria-label="TikTok de '+f.t+'">'+ttSvg+'</a>';
+  socHtml += '</div>';
+
+  return '<div class="sub-row"><h3 class="sub">'+f.t+'</h3>'+socHtml+'</div><p class="cat">'+f.c+'</p>'+
   (f.s?'<div class="stats">'+f.s.map(function(x){return '<div class="stat"><b>'+x[0]+'</b><span>'+x[1]+'</span></div>'}).join('')+'</div><p class="fn">*Métricas de estrategias orgánicas en Instagram correspondientes al 01/04 al 01/08.</p>':'')+
   '<p class="lead">'+f.d+'</p>'+
   '<div class="row">'+
@@ -390,7 +441,7 @@ $('feeds').innerHTML=feeds.map(function(f){
       var media = item.v 
         ? '<video src="'+item.f+'" autoplay muted loop playsinline></video>'
         : '<img src="'+item.f+'" alt="'+item.t+'" loading="lazy">';
-      return '<div class="post">'+media+'</div>';
+      return '<div class="post" data-src="'+item.f+'" data-v="'+item.v+'">'+media+'</div>';
     }).join('')+
   '</div>';
 }).join('');
@@ -399,13 +450,16 @@ var pj=[
 {
   n:'Glasé Magazine',
   c:'Medio de moda independiente',
+  ig:'glase.magazine',
+  tt:'glase.glase.glase',
+  btnText:'Ver proceso de Glasé',
   d:'Medio independiente de moda y cultura pop: identidad, contenido y análisis de métricas para Instagram y TikTok.',
   p:['En Glasé, medio independiente de moda y cultura pop, soy responsable de construir una identidad fresca, actual y alineada con las dinámicas culturales de la generación Z. Mi rol incluye la planificación, creación y edición de contenido para redes sociales, abarcando todo el proceso: desde la investigación de tendencias y la ideación de conceptos creativos, hasta la producción, edición y optimización de piezas para Instagram y TikTok.'],
   m:[
     {n:'Instagram',s:[['+10k','cuentas alcanzadas*'],['+25k','views al perfil'],['+1k','interacciones']],f:'*Métricas de estrategias orgánicas en Instagram correspondientes al 01/05 al 01/08.'},
     {n:'TikTok',s:[['+18k','nuevos seguidores**'],['+332k','views al perfil'],['+100k','me gusta']],f:'**Métricas de estrategias orgánicas en TikTok correspondientes al 01/05 al 01/08.'}
   ],
-  t:['Canva','CapCut','Figma'],
+  t:['Canva','CapCut','Figma','ElevenLabs'],
   link:{l:'Leer la Edición 01',u:'https://heyzine.com/flip-book/041281f75f.html'},
   cover:'video/glase-vid1.mp4',
   isCoverVid:true,
@@ -421,8 +475,12 @@ var pj=[
 {
   n:'Entre Líneas',
   c:'Caso publicitario · Video',
-  d:'Guión de video para un caso publicitario: un sistema tipográfico que hace visible el tono en los mensajes.',
-  p:['Entre Líneas es un sistema tipográfico que hace visible el tono en los mensajes escritos, con foco en la accesibilidad. Escribí el guión del video para presentar el caso publicitario y explicar cómo funciona el sistema.'],
+  btnText:'Ver proceso de Entre Líneas',
+  d:'Guión de video para un caso publicitario: un sistema tipográfico que hace visible el tono en los mensajes (proyecto ficticio desarrollado para la materia Dirección de Arte 2).',
+  p:[
+    'Entre Líneas es un sistema tipográfico que hace visible el tono en los mensajes escritos, con foco en la accesibilidad. Proyecto ficticio desarrollado para la materia <b>Dirección de Arte 2</b>.',
+    'Escribí el guión del video para presentar el caso publicitario y explicar cómo funciona el sistema.'
+  ],
   t:['Canva','CapCut','ElevenLabs'],
   cover:'img/entre-lineas.png',
   isCoverVid:false,
@@ -436,8 +494,44 @@ $('pjs').innerHTML=pj.map(function(p,i){
   var media = p.isCoverVid 
     ? '<video src="'+p.cover+'" autoplay muted loop playsinline></video>'
     : '<img src="'+p.cover+'" alt="'+p.n+'" loading="lazy">';
-  return '<div class="pj"><i>'+media+'</i><h3>'+p.n+'</h3><p>'+p.d+'</p><button class="btn" data-i="'+i+'">Ver proceso</button></div>';
+  
+  var socHtml = '';
+  if(p.ig || p.tt) {
+    socHtml = '<div class="soc-links" style="margin-top:10px">';
+    if(p.ig) socHtml += '<a class="soc-btn" href="https://instagram.com/'+p.ig+'" target="_blank" rel="noopener" aria-label="Instagram de '+p.n+'">'+igSvg+'</a>';
+    if(p.tt) socHtml += '<a class="soc-btn" href="https://tiktok.com/@'+p.tt+'" target="_blank" rel="noopener" aria-label="TikTok de '+p.n+'">'+ttSvg+'</a>';
+    socHtml += '</div>';
+  }
+
+  return '<div class="pj"><i>'+media+'</i><h3>'+p.n+'</h3>'+socHtml+'<p>'+p.d+'</p><button class="btn" data-i="'+i+'">'+p.btnText+'</button></div>';
 }).join('');
+
+/* VISOR DE PIEZAS (DESMUTEABLE) */
+var mViewer=$('media-viewer'), vContent=$('viewer-content'), vx=$('vx');
+function openMediaViewer(src, isVid) {
+  if(isVid) {
+    vContent.innerHTML = '<video src="'+src+'" autoplay muted controls playsinline style="max-width:90vw;max-height:85vh;border-radius:18px"></video>';
+  } else {
+    vContent.innerHTML = '<img src="'+src+'" alt="Pieza ampliada" style="max-width:90vw;max-height:85vh;border-radius:18px;display:block">';
+  }
+  document.body.classList.add('lock');
+  mViewer.showModal();
+}
+vx.addEventListener('click', function(){ mViewer.close(); });
+mViewer.addEventListener('click', function(e){ if(e.target === mViewer) mViewer.close(); });
+mViewer.addEventListener('close', function(){
+  document.body.classList.remove('lock');
+  vContent.innerHTML = '';
+});
+
+/* Click en cualquier tarjeta de post para ampliar */
+document.addEventListener('click', function(e) {
+  var post = e.target.closest('.post');
+  if(!post) return;
+  var src = post.getAttribute('data-src');
+  var isVid = post.getAttribute('data-v') === 'true';
+  if(src) openMediaViewer(src, isVid);
+});
 
 var dlg=$('dlg'),dc=$('dc');
 $('pjs').addEventListener('click',function(e){
@@ -445,11 +539,19 @@ $('pjs').addEventListener('click',function(e){
   var p=pj[+b.dataset.i];
   var galeriaHTML = p.gallery.map(function(item){
     return item.v 
-      ? '<video src="'+item.f+'" controls playsinline></video>'
-      : '<img src="'+item.f+'" alt="Pieza de diseño">';
+      ? '<video src="'+item.f+'" autoplay muted loop playsinline class="modal-media" data-src="'+item.f+'" data-v="true"></video>'
+      : '<img src="'+item.f+'" alt="Pieza de diseño" class="modal-media" data-src="'+item.f+'" data-v="false">';
   }).join('');
 
-  dc.innerHTML='<h2>'+p.n+'</h2><p class="cat2">'+p.c+'</p>'+
+  var socModal = '';
+  if(p.ig || p.tt) {
+    socModal = '<div class="soc-links" style="margin: 12px 0 20px">';
+    if(p.ig) socModal += '<a class="soc-btn" href="https://instagram.com/'+p.ig+'" target="_blank" rel="noopener">'+igSvg+'</a>';
+    if(p.tt) socModal += '<a class="soc-btn" href="https://tiktok.com/@'+p.tt+'" target="_blank" rel="noopener">'+ttSvg+'</a>';
+    socModal += '</div>';
+  }
+
+  dc.innerHTML='<h2>'+p.n+'</h2><p class="cat2">'+p.c+'</p>'+socModal+
     p.p.map(function(x){return '<p>'+x+'</p>'}).join('')+
     (p.link?'<p><a class="btn" href="'+p.link.u+'" target="_blank" rel="noopener">'+p.link.l+' ↗</a></p>':'')+
     (p.m?p.m.map(function(g){return '<p class="gl">'+g.n+'</p><div class="stats">'+g.s.map(function(x){return '<div class="stat"><b>'+x[0]+'</b><span>'+x[1]+'</span></div>'}).join('')+'</div><p class="fn">'+g.f+'</p>'}).join(''):'')+
@@ -458,6 +560,13 @@ $('pjs').addEventListener('click',function(e){
   document.body.classList.add('lock');
   dlg.showModal();
   dc.scrollTop=0;
+});
+
+/* Click en miniaturas del modal para ver en grande y con audio */
+dc.addEventListener('click', function(e) {
+  var m = e.target.closest('.modal-media');
+  if(!m) return;
+  openMediaViewer(m.getAttribute('data-src'), m.getAttribute('data-v') === 'true');
 });
 
 $('x').addEventListener('click',function(){dlg.close()});
@@ -488,7 +597,7 @@ if(matchMedia('(hover:hover) and (pointer:fine)').matches&&!matchMedia('(prefers
     cur.style.opacity=1;
     cur.style.transform='translate('+(e.clientX-12)+'px,'+(e.clientY-12)+'px)';
   });
-  document.querySelectorAll('a, button').forEach(function(a){
+  document.querySelectorAll('a, button, .post, .pcs img, .pcs video').forEach(function(a){
     a.addEventListener('pointerenter',function(){cur.classList.add('big')});
     a.addEventListener('pointerleave',function(){cur.classList.remove('big')});
   });
@@ -589,7 +698,7 @@ var lg=D.querySelector('.logo'),tk=false;
 function sc(){tk=false;var m=H.scrollHeight-innerHeight;sp.style.setProperty('--p',m>0?Math.min(scrollY/m,1):0);if(lg)lg.style.setProperty('--sr',(scrollY*.22)+'deg')}
 addEventListener('scroll',function(){if(!tk){tk=true;requestAnimationFrame(sc)}},{passive:true});sc();
 
-/* 6. repetición al navegar */
+/* 6. repetición al navegar (sin animar tools en Social Media) */
 all('.cg>div').forEach(function(c,i){c.style.setProperty('--c',i)});
 function replay(pg){
   all('.rv',pg).forEach(function(el){if(el.closest('dialog'))return;el.classList.add('nt');el.classList.remove('in','done');void el.offsetWidth;el.classList.remove('nt');io.observe(el)});
