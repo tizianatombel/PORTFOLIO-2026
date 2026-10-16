@@ -69,11 +69,13 @@ dialog::backdrop{background:rgba(31,17,13,.6);backdrop-filter:blur(6px)}
 .pcs img,.pcs video{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:18px;border:2px solid var(--pinkd);background:#000;cursor:pointer;transition:transform .2s ease}
 .pcs img:hover,.pcs video:hover{transform:scale(1.02)}
 .x{position:absolute;top:22px;right:22px;z-index:2;width:48px;height:48px;border:0;border-radius:50%;background:var(--accent);color:var(--onacc);font-size:26px;line-height:1;font-weight:700;cursor:pointer}
+
+/* WORK AND TRAVEL AJUSTADO EN UNA SOLA LÍNEA */
 .wt{margin-top:36px}
-.wt h2{font-size:clamp(30px,4.4vw,54px)}
+.wt h2{font-size:clamp(28px,3.8vw,48px);display:inline-flex;align-items:baseline;white-space:nowrap;gap:.25em}
 .wt .txt p{font-size:16px;line-height:1.5;text-align:justify;text-justify:inter-word}
 
-/* ESTILOS DE TILT AJUSTADOS */
+/* ESTILOS DE TILT */
 .tilt{display:inline-block;width:fit-content;max-width:max-content;white-space:nowrap;background:var(--lime);color:var(--onacc);padding:.04em .18em .08em;margin:0;transform:rotate(-2deg);vertical-align:baseline}
 .tilt.pk{background:var(--accent)}
 
@@ -411,10 +413,10 @@ var feeds=[
   tt:'bohemiobb',
   d:'En Bohemio Bags, emprendimiento de bolsos y tote bags artesanales, lideré durante 6 meses la estrategia de contenido y gestión de la marca en entornos digitales para Instagram, TikTok y Pinterest.',
   p:[
-    {t:'Colección de bolsos', f:'img/moxey-3.jpg', v:false},
-    {t:'Proceso artesanal', f:'video/bohemio-1.mp4', v:true},
-    {t:'Detalles y texturas', f:'img/moxey-4.jpg', v:false},
-    {t:'Campaña en video', f:'video/bohemio-2.mp4', v:true}
+    {t:'Colección de bolsos', f:'video/bohemio-1.mp4', v:true},
+    {t:'Proceso artesanal', f:'video/bohemio-2.mp4', v:true},
+    {t:'Detalles de diseño', f:'video/bohemio-3.mp4', v:true},
+    {t:'Campaña en video', f:'video/bohemio-4.mp4', v:true}
   ]
 }];
 
