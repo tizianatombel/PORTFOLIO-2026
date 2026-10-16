@@ -29,8 +29,8 @@ h1,h2,h3{margin:0;font-weight:700;letter-spacing:-.05em;line-height:.95}
 .ring::before{content:"";position:absolute;inset:10%;border-radius:50%;background:var(--tint);box-shadow:0 0 40px var(--tint)}
 .ring svg.t{position:absolute;inset:0;width:100%;height:100%;animation:spin 30s linear infinite}
 .ring text{font-size:12.5px;font-weight:700;fill:var(--ink)}
-.portrait{position:absolute;inset:17%;border-radius:50%;background:var(--accent);display:grid;place-items:center;overflow:hidden;color:#fff}
-.portrait img{width:100%;height:100%;object-fit:cover;object-position:center 30%;transform:scale(1.08);transform-origin:center center}
+.portrait{position:absolute;inset:17%;border-radius:50%;background:var(--accent);display:grid;place-items:center;overflow:hidden}
+.portrait img{width:100%;height:100%;object-fit:cover;object-position:center;border-radius:50%}
 @keyframes spin{to{transform:rotate(360deg)}}
 h1{font-size:clamp(46px,8vw,88px)}
 .rule{width:56px;height:3px;background:var(--ink);margin:28px 0 18px}
@@ -70,16 +70,13 @@ dialog::backdrop{background:rgba(31,17,13,.6);backdrop-filter:blur(6px)}
 .pcs img:hover,.pcs video:hover{transform:scale(1.02)}
 .x{position:absolute;top:22px;right:22px;z-index:2;width:48px;height:48px;border:0;border-radius:50%;background:var(--accent);color:var(--onacc);font-size:26px;line-height:1;font-weight:700;cursor:pointer}
 
-/* WORK AND TRAVEL EN UNA SOLA LÍNEA */
 .wt{margin-top:36px}
 .wt h2{font-size:clamp(28px,3.8vw,48px);display:inline-flex;align-items:baseline;white-space:nowrap;gap:.25em}
 .wt .txt p{font-size:16px;line-height:1.5;text-align:justify;text-justify:inter-word}
 
-/* ESTILOS DE TILT */
 .tilt{display:inline-block;width:fit-content;max-width:max-content;white-space:nowrap;background:var(--lime);color:var(--onacc);padding:.04em .18em .08em;margin:0;transform:rotate(-2deg);vertical-align:baseline}
 .tilt.pk{background:var(--accent)}
 
-/* ENLACES A REDES Y LOGOS */
 .sub-row{display:flex;align-items:center;gap:16px;margin-top:80px;flex-wrap:wrap}
 .sub-row .sub{margin:0}
 .soc-links{display:inline-flex;align-items:center;gap:10px}
@@ -87,14 +84,12 @@ dialog::backdrop{background:rgba(31,17,13,.6);backdrop-filter:blur(6px)}
 .soc-btn:hover{background:var(--lime);border-color:var(--lime);transform:translateY(-2px)}
 .soc-btn svg{width:18px;height:18px;fill:currentColor}
 
-/* MODAL DE VISOR DE PIEZAS A PANTALLA COMPLETA */
 #media-viewer{border:0;padding:0;background:transparent;max-width:92vw;max-height:90vh;outline:none;overflow:visible}
 #media-viewer::backdrop{background:rgba(31,17,13,.85);backdrop-filter:blur(8px)}
 .viewer-box{position:relative;display:flex;align-items:center;justify-content:center;max-width:90vw;max-height:85vh}
 .viewer-box img,.viewer-box video{max-width:90vw;max-height:85vh;border-radius:18px;box-shadow:0 20px 40px rgba(0,0,0,.5);border:2px solid var(--pinkd);background:#000;object-fit:contain}
 .viewer-close{position:absolute;top:-20px;right:-20px;width:42px;height:42px;border-radius:50%;background:var(--lime);color:var(--onacc);border:2px solid var(--ink);font-size:24px;font-weight:700;display:grid;place-items:center;cursor:pointer;z-index:10}
 
-/* CTA TRABAJEMOS JUNTOS */
 .cta{background:var(--nav);color:var(--navink);padding:96px 24px;position:relative;z-index:4}
 .ctai{max-width:1100px;margin:auto}
 .cta h2{font-size:clamp(34px,5.2vw,70px);display:flex;flex-wrap:wrap;align-items:baseline;gap:.22em;line-height:1.05}
@@ -148,7 +143,7 @@ h3{font-size:clamp(28px,3.6vw,42px)}
 .post{aspect-ratio:4/5;display:block}
 .post img,.post video{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s ease}
 .post:hover img,.post:hover video{transform:scale(1.04)}
-.pjs{display:grid;grid-template-columns:1fr 1fr;gap:40px 24px;margin-top:48px}
+.pjs{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:40px 24px;margin-top:48px}
 .pj i{display:block;aspect-ratio:16/10;font-style:normal}
 .pj i img,.pj i video{width:100%;height:100%;object-fit:cover;display:block}
 .pj h3{font-size:30px;margin-top:16px}
@@ -156,12 +151,10 @@ h3{font-size:clamp(28px,3.6vw,42px)}
 .about{display:grid;grid-template-columns:1.3fr 1fr;gap:48px;align-items:start}
 footer{background:var(--nav);color:var(--navink);text-align:center;padding:28px 24px;font-size:15px;position:relative;z-index:4}
 
-/* CURSOR ESTRELLA ROSA */
 .cur{position:fixed;left:0;top:0;width:24px;height:24px;pointer-events:none;opacity:0;z-index:100;transition:width .2s,height .2s,margin .2s;display:flex;align-items:center;justify-content:center}
 .cur svg{width:100%;height:100%;display:block;stroke:var(--pinkd);stroke-width:3;fill:none;stroke-linejoin:round;stroke-linecap:round}
 .cur.big{width:38px;height:38px;margin:-7px 0 0 -7px}
 
-/* STICKERS EN QUIEN SOY CON SOMBRA -30% */
 #quien{position:relative;overflow:hidden}
 .tray{min-height:180px}
 #quien>section.w{padding-bottom:24px}
@@ -178,7 +171,6 @@ nav{gap:16px}nav a{font-size:14px}
 .lead{text-align:left}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.ring svg.t,.tools div,.spin{animation:none}.tools{overflow-x:auto}}
 
-/* Cómo trabajo */
 .howw{margin-top:72px}
 .howw h2{font-size:clamp(30px,4.2vw,50px)}
 #quien .howw+.wt{margin-top:72px}
@@ -194,7 +186,6 @@ nav{gap:16px}nav a{font-size:14px}
 .hc.on .d{max-height:150px;opacity:1;margin-top:8px;transition-delay:.12s}
 @media (max-width:760px){.how{flex-direction:column;height:auto}.hc{flex:none;min-height:96px}.hc.on{flex:none}}
 
-/* ===== Animaciones ===== */
 @keyframes up{from{opacity:0;transform:translateY(38px)}}
 @keyframes grow{from{transform:scaleX(0)}}
 @keyframes pop{from{opacity:0;transform:scale(.55) rotate(-16deg)}}
@@ -262,7 +253,7 @@ nav{gap:16px}nav a{font-size:14px}
 <div class="quote"><p>Cada marca tiene una voz. Mi trabajo es encontrarla y sostenerla en cada publicación.</p></div>
 <section class="w" id="sobre"><h2>Sobre mí</h2>
 <div class="abt"><div class="txt">
-<p>Soy Tiziana Tombel, estudiante avanzada de la carrera de <b>Licenciatura en Publicidad</b> en la <b>Universidad Argentina de la Empresa</b>, ubicada en La Plata, Buenos Aires. Me considero una persona creativa, observadora y comprometida con los detalles, con un gran interés por el mundo de las marcas, la <b>comunicación digital</b> y la industria de la moda.</p>
+<p>Soy Tiziana Tombel, estudiante avanzada de la carrera de <b>Licenciatura en Publicidad</b> en la <b>Universidad Argentina de la Empresa</b>. Me considero una persona creativa, observadora y comprometida con los detalles, con un gran interés por el mundo de las marcas, la <b>comunicación digital</b> y la industria de la moda.</p>
 <p>Me interesa formar parte de marcas con identidad clara, propósito y que coincidan con mis valores. A largo plazo, busco desarrollarme en <b>dirección creativa</b> y construcción de universos de marca. <b>Estoy abierta a oportunidades emocionantes.</b></p>
 <a class="btn" href="https://www.linkedin.com/in/tiziana-tombel-8a77ba2a0/" target="_blank" rel="noopener">LinkedIn</a>
 <a class="btn" href="https://drive.google.com/file/d/1s4uMGG3Zv9ueaoAohLSLPr5SKrPg2Kcz/view?usp=sharing" target="_blank" rel="noopener">CV</a></div>
@@ -342,10 +333,8 @@ nav{gap:16px}nav a{font-size:14px}
   </svg>
 </div>
 
-<!-- Modal principal para proceso de proyectos -->
 <dialog id="dlg" aria-label="Proceso del proyecto"><button class="x" id="x" aria-label="Cerrar">×</button><div class="dlgin" id="dc"></div></dialog>
 
-<!-- Modal visor interactivo de piezas a pantalla completa -->
 <dialog id="media-viewer">
   <div class="viewer-box">
     <button class="viewer-close" id="vx" aria-label="Cerrar visor">×</button>
@@ -362,7 +351,6 @@ var feed=[2,6,9,13,16,20,23,27,30],st=[1,3,5,8,12,14,19,22,26,29];
 for(var d=1;d<=31;d++){cg+='<div>'+d+(feed.indexOf(d)>-1?'<u>Feed</u>':st.indexOf(d)>-1?'<u class="k">Story</u>':'')+'</div>'}
 $('cg').innerHTML=cg;
 
-/* SVGs de logos sociales */
 var igSvg = '<svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>';
 var ttSvg = '<svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>';
 
@@ -399,7 +387,6 @@ var feeds=[
   ig:'manfronicasa',
   s:[['+84k','cuentas alcanzadas*'],['+229k','visualizaciones'],['+23k','seguidores consolidados']],
   d:'En Manfroni Casa, showroom de diseño italiano premium en Puerto Madero, lideré la estrategia de contenido para redes sociales. Mis tareas incluyeron la planificación de contenido, edición de piezas estáticas y videos y planificación de calendario.',
-  n:'MANFRONI',
   p:[
     {t:'Muebles a medida', f:'img/manfroni-1.png', v:false},
     {t:'El taller y el proceso', f:'video/manfroni-vid1.mp4', v:true},
@@ -433,7 +420,7 @@ $('feeds').innerHTML=feeds.map(function(f){
   '<div class="row">'+
     f.p.map(function(item){
       var media = item.v 
-        ? '<video src="'+item.f+'" autoplay muted loop playsinline></video>'
+        ? '<video src="'+item.f+'" autoplay muted loop playsinline preload="metadata"></video>'
         : '<img src="'+item.f+'" alt="'+item.t+'" loading="lazy">';
       return '<div class="post" data-src="'+item.f+'" data-v="'+item.v+'">'+media+'</div>';
     }).join('')+
@@ -460,7 +447,7 @@ var pj=[
   gallery:[
     {f:'video/glase-vid1.mp4',v:true},
     {f:'video/glase-vid2.mp4',v:true},
-    {f:'video/glase-vid3.MP4',v:true},
+    {f:'video/glase-vid3.mp4',v:true},
     {f:'video/glase-vid4.mp4',v:true},
     {f:'img/glase-1.png',v:false},
     {f:'img/glase-2.png',v:false},
@@ -483,11 +470,32 @@ var pj=[
     {f:'video/entre-lineas.mp4',v:true},
     {f:'img/entre-lineas.png',v:false}
   ]
+},
+{
+  n:'Ratgirls',
+  c:'Dirección de Arte 2 · Universo de Marca',
+  btnText:'Ver detalles de Ratgirls',
+  d:'Universo visual y conceptual para la materia Dirección de Arte 2: un mundo subterráneo donde cada personaje representa un rasgo de nuestra personalidad.',
+  p:[
+    'Ratgirls es un proyecto desarrollado para la materia <b>Dirección de Arte 2</b> en el que la consigna fue construir un universo propio vinculado a nuestra personalidad.',
+    'Junto a mi compañera creamos un mundo de ratas que habitan en un sistema de cuevas interconectadas, donde cada una de ellas simboliza y representa distintos atributos y facetas de nosotras.'
+  ],
+  t:['Figma','Canva','Ilustración','Dirección Creativa'],
+  cover:'img/abecedario-1.jpg',
+  isCoverVid:false,
+  gallery:[
+    {f:'img/abecedario-1.jpg',v:false},
+    {f:'img/abecedario-2.jpg',v:false},
+    {f:'img/abecedario-3.jpg',v:false},
+    {f:'img/abecedario-4.jpg',v:false},
+    {f:'img/abecedario-5.jpg',v:false},
+    {f:'img/abecedario-6.jpg',v:false}
+  ]
 }];
 
 $('pjs').innerHTML=pj.map(function(p,i){
   var media = p.isCoverVid 
-    ? '<video src="'+p.cover+'" autoplay muted loop playsinline></video>'
+    ? '<video src="'+p.cover+'" autoplay muted loop playsinline preload="metadata"></video>'
     : '<img src="'+p.cover+'" alt="'+p.n+'" loading="lazy">';
   
   var socHtml = '';
@@ -501,7 +509,6 @@ $('pjs').innerHTML=pj.map(function(p,i){
   return '<div class="pj"><i>'+media+'</i><h3>'+p.n+'</h3>'+socHtml+'<p>'+p.d+'</p><button class="btn" data-i="'+i+'">'+p.btnText+'</button></div>';
 }).join('');
 
-/* VISOR DE PIEZAS (DESMUTEABLE) */
 var mViewer=$('media-viewer'), vContent=$('viewer-content'), vx=$('vx');
 function openMediaViewer(src, isVid) {
   if(isVid) {
@@ -519,7 +526,6 @@ mViewer.addEventListener('close', function(){
   vContent.innerHTML = '';
 });
 
-/* Click en cualquier tarjeta de post para ampliar */
 document.addEventListener('click', function(e) {
   var post = e.target.closest('.post');
   if(!post) return;
@@ -534,7 +540,7 @@ $('pjs').addEventListener('click',function(e){
   var p=pj[+b.dataset.i];
   var galeriaHTML = p.gallery.map(function(item){
     return item.v 
-      ? '<video src="'+item.f+'" autoplay muted loop playsinline class="modal-media" data-src="'+item.f+'" data-v="true"></video>'
+      ? '<video src="'+item.f+'" autoplay muted loop playsinline preload="metadata" class="modal-media" data-src="'+item.f+'" data-v="true"></video>'
       : '<img src="'+item.f+'" alt="Pieza de diseño" class="modal-media" data-src="'+item.f+'" data-v="false">';
   }).join('');
 
@@ -557,7 +563,6 @@ $('pjs').addEventListener('click',function(e){
   dc.scrollTop=0;
 });
 
-/* Click en miniaturas del modal para ver en grande y con audio */
 dc.addEventListener('click', function(e) {
   var m = e.target.closest('.modal-media');
   if(!m) return;
@@ -598,7 +603,6 @@ if(matchMedia('(hover:hover) and (pointer:fine)').matches&&!matchMedia('(prefers
   });
 }
 
-/* SISTEMA MATEMÁTICO DE STICKERS DE NETLIFY CON SOMBRA -30% */
 var qs=$('quien'),skEls=[],skZ=4,skW=0,
 SK=[[1,266,225],[2,224,226],[3,147,226],[4,66,81],[6,243,178],[7,129,236],[8,107,110],[9,254,216],[10,221,156],[11,124,123],[12,230,171],[13,485,147],[14,130,192],[15,249,143],[16,147,147],[17,81,119],[18,221,126],[19,292,139],[20,319,201],[21,138,143]],
 STACK=[];
@@ -647,13 +651,11 @@ addEventListener('resize',function(){if(qs.classList.contains('on')&&innerWidth!
 
 go();
 
-/* Cómo trabajo: tarjetas que se expanden */
 (function(){var hs=[].slice.call(document.querySelectorAll('.hc'));
 hs.forEach(function(b){b.addEventListener('click',function(){var open=b.classList.contains('on');
   hs.forEach(function(x){x.classList.remove('on');x.setAttribute('aria-expanded','false')});
   if(!open){b.classList.add('on');b.setAttribute('aria-expanded','true')}})})})();
 
-/* ===== Animaciones ===== */
 (function(){
 if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
 var D=document,H=D.documentElement;H.classList.add('js-anim');
@@ -674,7 +676,6 @@ function armStats(root){all('.stat b',root).forEach(function(b){if(!b.dataset.cn
 armStats();
 var dc=$('dc');if(dc)new MutationObserver(function(){armStats(dc)}).observe(dc,{childList:true});
 
-/* 3. tilt y marcador */
 var tio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('go');tio.unobserve(e.target)}})},{threshold:.9});
 all('.tilt').forEach(function(t){if(!t.closest('.hero'))tio.observe(t)});
 function hero(){var r=D.querySelector('.hero .role'),ts=all('.hero .tilt');
@@ -682,18 +683,15 @@ function hero(){var r=D.querySelector('.hero .role'),ts=all('.hero .tilt');
   setTimeout(function(){if(r)r.classList.add('go');ts.forEach(function(t){t.classList.add('go')})},60)}
 hero();var home=$('home');if(home)new MutationObserver(function(){if(home.classList.contains('on'))hero()}).observe(home,{attributes:true,attributeFilter:['class']});
 
-/* 4. stickers */
 var q=$('quien');
 function skIdx(){all('.sk',q).forEach(function(s,i){s.style.setProperty('--i',i)})}
 if(q){skIdx();new MutationObserver(skIdx).observe(q,{childList:true})}
 
-/* 5. scroll */
 var sp=D.createElement('div');sp.id='sp';D.body.appendChild(sp);
 var lg=D.querySelector('.logo'),tk=false;
 function sc(){tk=false;var m=H.scrollHeight-innerHeight;sp.style.setProperty('--p',m>0?Math.min(scrollY/m,1):0);if(lg)lg.style.setProperty('--sr',(scrollY*.22)+'deg')}
 addEventListener('scroll',function(){if(!tk){tk=true;requestAnimationFrame(sc)}},{passive:true});sc();
 
-/* 6. repetición al navegar (sin animar tools en Social Media) */
 all('.cg>div').forEach(function(c,i){c.style.setProperty('--c',i)});
 function replay(pg){
   all('.rv',pg).forEach(function(el){if(el.closest('dialog'))return;el.classList.add('nt');el.classList.remove('in','done');void el.offsetWidth;el.classList.remove('nt');io.observe(el)});
