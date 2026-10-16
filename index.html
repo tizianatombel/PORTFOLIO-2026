@@ -29,8 +29,8 @@ h1,h2,h3{margin:0;font-weight:700;letter-spacing:-.05em;line-height:.95}
 .ring::before{content:"";position:absolute;inset:10%;border-radius:50%;background:var(--tint);box-shadow:0 0 40px var(--tint)}
 .ring svg.t{position:absolute;inset:0;width:100%;height:100%;animation:spin 30s linear infinite}
 .ring text{font-size:12.5px;font-weight:700;fill:var(--ink)}
-.portrait{position:absolute;inset:17%;border-radius:50%;background:var(--accent);box-shadow:0 0 0 6px var(--lime);display:grid;place-items:center;overflow:hidden;color:#fff}
-.portrait img{width:100%;height:100%;object-fit:cover;object-position:center 10%;transform:scale(1.65);transform-origin:center 20%}
+.portrait{position:absolute;inset:17%;border-radius:50%;background:var(--accent);display:grid;place-items:center;overflow:hidden;color:#fff}
+.portrait img{width:100%;height:100%;object-fit:cover;object-position:center 30%;transform:scale(1.08);transform-origin:center center}
 @keyframes spin{to{transform:rotate(360deg)}}
 h1{font-size:clamp(46px,8vw,88px)}
 .rule{width:56px;height:3px;background:var(--ink);margin:28px 0 18px}
@@ -70,7 +70,7 @@ dialog::backdrop{background:rgba(31,17,13,.6);backdrop-filter:blur(6px)}
 .pcs img:hover,.pcs video:hover{transform:scale(1.02)}
 .x{position:absolute;top:22px;right:22px;z-index:2;width:48px;height:48px;border:0;border-radius:50%;background:var(--accent);color:var(--onacc);font-size:26px;line-height:1;font-weight:700;cursor:pointer}
 
-/* WORK AND TRAVEL AJUSTADO EN UNA SOLA LÍNEA */
+/* WORK AND TRAVEL EN UNA SOLA LÍNEA */
 .wt{margin-top:36px}
 .wt h2{font-size:clamp(28px,3.8vw,48px);display:inline-flex;align-items:baseline;white-space:nowrap;gap:.25em}
 .wt .txt p{font-size:16px;line-height:1.5;text-align:justify;text-justify:inter-word}
@@ -399,6 +399,7 @@ var feeds=[
   ig:'manfronicasa',
   s:[['+84k','cuentas alcanzadas*'],['+229k','visualizaciones'],['+23k','seguidores consolidados']],
   d:'En Manfroni Casa, showroom de diseño italiano premium en Puerto Madero, lideré la estrategia de contenido para redes sociales. Mis tareas incluyeron la planificación de contenido, edición de piezas estáticas y videos y planificación de calendario.',
+  n:'MANFRONI',
   p:[
     {t:'Muebles a medida', f:'img/manfroni-1.png', v:false},
     {t:'El taller y el proceso', f:'video/manfroni-vid1.mp4', v:true},
@@ -460,6 +461,7 @@ var pj=[
     {f:'video/glase-vid1.mp4',v:true},
     {f:'video/glase-vid2.mp4',v:true},
     {f:'video/glase-vid3.MP4',v:true},
+    {f:'video/glase-vid4.mp4',v:true},
     {f:'img/glase-1.png',v:false},
     {f:'img/glase-2.png',v:false},
     {f:'img/glase-3.png',v:false}
@@ -691,7 +693,7 @@ var lg=D.querySelector('.logo'),tk=false;
 function sc(){tk=false;var m=H.scrollHeight-innerHeight;sp.style.setProperty('--p',m>0?Math.min(scrollY/m,1):0);if(lg)lg.style.setProperty('--sr',(scrollY*.22)+'deg')}
 addEventListener('scroll',function(){if(!tk){tk=true;requestAnimationFrame(sc)}},{passive:true});sc();
 
-/* 6. repetición al navegar */
+/* 6. repetición al navegar (sin animar tools en Social Media) */
 all('.cg>div').forEach(function(c,i){c.style.setProperty('--c',i)});
 function replay(pg){
   all('.rv',pg).forEach(function(el){if(el.closest('dialog'))return;el.classList.add('nt');el.classList.remove('in','done');void el.offsetWidth;el.classList.remove('nt');io.observe(el)});
