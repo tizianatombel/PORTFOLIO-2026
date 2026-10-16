@@ -141,12 +141,7 @@ h3{font-size:clamp(28px,3.6vw,42px)}
 .stat b{display:block;font-size:clamp(34px,5vw,54px);letter-spacing:-.05em;line-height:1}
 .stat span{font-size:15px;color:var(--soft)}
 .fn{margin:12px 0 0;font-size:13px;color:var(--soft)}
-.row{display:grid;grid-template-columns:150px repeat(4,1fr);gap:16px;margin-top:28px}
-.ph{border:2px solid var(--ink);border-radius:22px;padding:12px;display:flex;flex-direction:column;gap:8px;aspect-ratio:9/17}
-.ph .hd{display:flex;gap:8px;align-items:center;font-size:11px;font-weight:700}
-.av{width:22px;height:22px;border-radius:50%;background:var(--accent);flex:none}
-.gr{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;flex:1}
-.gr i{background:var(--tint)}
+.row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:28px}
 .post,.pj i{border:2px solid var(--pinkd);border-radius:14px;overflow:hidden;cursor:pointer;position:relative}
 .post{aspect-ratio:4/5;display:block}
 .post img,.post video{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s ease}
@@ -175,7 +170,7 @@ footer{background:var(--nav);color:var(--navink);text-align:center;padding:28px 
 .hero{grid-template-columns:1fr;gap:32px;padding-top:32px}
 nav{gap:16px}nav a{font-size:14px}
 .proc,.about,.pjs,.steps,.abt,.cvw{grid-template-columns:1fr}.cv li{flex-direction:column;gap:4px}.cv span{text-align:left}.step:last-child{grid-column:auto}
-.row{grid-template-columns:1fr 1fr}.ph{display:none}
+.row{grid-template-columns:1fr 1fr}
 .dlgin{padding:44px 24px 32px}
 .tray{min-height:220px}
 .lead{text-align:left}}
@@ -376,7 +371,6 @@ var feeds=[
   ig:'moxey.oficial',
   s:[['+72k','cuentas alcanzadas*'],['+212k','views al perfil'],['+5k','interacciones']],
   d:'En Moxey, marca de indumentaria urbana mayorista/minorista con base en Flores, realizo la estrategia de contenido y gestión de la comunidad en redes sociales. Soy responsable de la planificación y creación de contenido para Instagram, incluyendo el manejo de mensajes, respuestas a comentarios y apoyo al equipo creativo para producciones y jornadas de grabación.',
-  n:'MOXEY',
   p:[
     {t:'Sorteo y anuncio', f:'img/moxey-1.jpg', v:false},
     {t:'Campaña en video', f:'video/moxey-vid1.mp4', v:true},
@@ -390,7 +384,6 @@ var feeds=[
   ig:'narguilascordoba_',
   s:[['+425k','cuentas alcanzadas*'],['+1,1M','views al perfil'],['+9k','interacciones']],
   d:'En Narguilas Córdoba, hookah lounge y comercio con sucursales en Córdoba y una en Palermo, mi rol incluye la creación de contenido y gestión de marca en redes sociales. Soy responsable de la planificación creativa y la producción de contenido en Instagram y TikTok.',
-  n:'NARGUILAS',
   p:[
     {t:'Tipos de amigos narguileros', f:'img/nargui-1.jpg', v:false},
     {t:'Reel destacado', f:'video/nargui-vid1.mp4', v:true},
@@ -404,7 +397,6 @@ var feeds=[
   ig:'manfronicasa',
   s:[['+84k','cuentas alcanzadas*'],['+229k','visualizaciones'],['+23k','seguidores consolidados']],
   d:'En Manfroni Casa, showroom de diseño italiano premium en Puerto Madero, lideré la estrategia de contenido para redes sociales. Mis tareas incluyeron la planificación de contenido, edición de piezas estáticas y videos y planificación de calendario.',
-  n:'MANFRONI',
   p:[
     {t:'Muebles a medida', f:'img/manfroni-1.png', v:false},
     {t:'El taller y el proceso', f:'video/manfroni-vid1.mp4', v:true},
@@ -416,13 +408,13 @@ var feeds=[
   t:'Bohemio Bags',
   c:'Emprendimiento de bolsos y totebags',
   ig:'bohemio____',
+  tt:'bohemiobb',
   d:'En Bohemio Bags, emprendimiento de bolsos y tote bags artesanales, lideré durante 6 meses la estrategia de contenido y gestión de la marca en entornos digitales para Instagram, TikTok y Pinterest.',
-  n:'BOHEMIO',
   p:[
-    {t:'Colección de bolsos', f:'img/manfroni-1.png', v:false},
+    {t:'Colección de bolsos', f:'img/moxey-3.jpg', v:false},
     {t:'Proceso artesanal', f:'video/bohemio-1.mp4', v:true},
-    {t:'Campaña en video', f:'video/bohemio-2.mp4', v:true},
-    {t:'Cierre de temporada', f:'video/bohemio-3.mp4', v:true}
+    {t:'Detalles y texturas', f:'img/moxey-4.jpg', v:false},
+    {t:'Campaña en video', f:'video/bohemio-2.mp4', v:true}
   ]
 }];
 
@@ -436,7 +428,6 @@ $('feeds').innerHTML=feeds.map(function(f){
   (f.s?'<div class="stats">'+f.s.map(function(x){return '<div class="stat"><b>'+x[0]+'</b><span>'+x[1]+'</span></div>'}).join('')+'</div><p class="fn">*Métricas de estrategias orgánicas en Instagram correspondientes al 01/04 al 01/08.</p>':'')+
   '<p class="lead">'+f.d+'</p>'+
   '<div class="row">'+
-    '<div class="ph" aria-hidden="true"><div class="hd"><span class="av"></span>'+f.n+'</div><div class="gr">'+'<i></i>'.repeat(12)+'</div></div>'+
     f.p.map(function(item){
       var media = item.v 
         ? '<video src="'+item.f+'" autoplay muted loop playsinline></video>'
@@ -664,7 +655,7 @@ if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
 var D=document,H=D.documentElement;H.classList.add('js-anim');
 function all(s,r){return [].slice.call((r||D).querySelectorAll(s))}
 var $=function(i){return D.getElementById(i)};
-var SEL='.w h2,.sub,.how,.cta h2,.lead,.cat,.fn,.stat,.step,.cal,.gc,.pj,.gi,.post,.box,.txt p,.cv li,.row .ph,.cta .pl a';
+var SEL='.w h2,.sub,.how,.cta h2,.lead,.cat,.fn,.stat,.step,.cal,.gc,.pj,.gi,.post,.box,.txt p,.cv li,.cta .pl a';
 var io=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;var el=e.target;io.unobserve(el);el.classList.add('in');setTimeout(function(){el.classList.add('done')},1100)})},{threshold:.12,rootMargin:'0px 0px -6% 0px'});
 function arm(root){var g=new Map();all(SEL,root).forEach(function(el){if(el.dataset.rv||el.closest('dialog'))return;el.dataset.rv=1;
   var p=el.parentNode,i=g.get(p)||0;g.set(p,i+1);el.style.setProperty('--d',(i%7)*70+'ms');el.classList.add('rv');io.observe(el)})}
@@ -698,7 +689,7 @@ var lg=D.querySelector('.logo'),tk=false;
 function sc(){tk=false;var m=H.scrollHeight-innerHeight;sp.style.setProperty('--p',m>0?Math.min(scrollY/m,1):0);if(lg)lg.style.setProperty('--sr',(scrollY*.22)+'deg')}
 addEventListener('scroll',function(){if(!tk){tk=true;requestAnimationFrame(sc)}},{passive:true});sc();
 
-/* 6. repetición al navegar (sin animar tools en Social Media) */
+/* 6. repetición al navegar */
 all('.cg>div').forEach(function(c,i){c.style.setProperty('--c',i)});
 function replay(pg){
   all('.rv',pg).forEach(function(el){if(el.closest('dialog'))return;el.classList.add('nt');el.classList.remove('in','done');void el.offsetWidth;el.classList.remove('nt');io.observe(el)});
