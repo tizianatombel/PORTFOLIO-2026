@@ -49,7 +49,7 @@ h1{font-size:clamp(46px,8vw,88px)}
 .txt b{font-weight:700}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
 .chips span{border:2px solid var(--pinkd);border-radius:99px;padding:5px 14px;font-size:15px}
-.btn{display:inline-block;margin-top:12px;border:2px solid var(--ink);border-radius:99px;padding:10px 26px;text-decoration:none;font-weight:700;cursor:pointer;background:none;color:inherit;font:inherit}
+.btn{display:inline-block;margin-top:12px;margin-right:8px;border:2px solid var(--ink);border-radius:99px;padding:10px 26px;text-decoration:none;font-weight:700;cursor:pointer;background:none;color:inherit;font:inherit}
 .btn:hover{background:var(--tint)}
 .cvw{display:grid;grid-template-columns:1fr;gap:48px;align-items:start;margin-top:40px}
 .cvw .cv{margin:0}
@@ -77,15 +77,16 @@ dialog::backdrop{background:rgba(31,17,13,.6);backdrop-filter:blur(6px)}
 .ctai{max-width:1100px;margin:auto}
 .cta h2{font-size:clamp(26px,4.8vw,66px)}
 .cta .pl{display:flex;flex-wrap:wrap;gap:16px;margin-top:40px}
-.cta a{display:inline-block;border:2px solid var(--navink);border-radius:99px;padding:12px 28px;font-size:20px;font-weight:700;text-decoration:none;color:inherit}
+.cta a{display:inline-block;border:2px solid var(--navink);border-radius:99px;padding:12px 28px;font-size:20px;font-weight:700;text-decoration:none;color:inherit;transition:all .25s ease}
 .cta a.m{background:var(--lime);border-color:var(--lime);color:var(--onacc)}
-.cta a:hover{text-decoration:underline}
-.go{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-top:32px}
-.gc{display:flex;flex-direction:column;gap:3px;border:2px solid var(--ink);border-radius:16px;padding:12px 14px;text-decoration:none}
-.gc b{font-size:18px;letter-spacing:-.03em}
-.gc span{font-size:13px;line-height:1.3;color:var(--soft)}
-.gc:hover{background:var(--lime);color:var(--onacc)}
-.gc:hover span{color:var(--onacc)}
+.cta a:hover{opacity:.88}
+.go{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-top:32px}
+.gc{display:flex;flex-direction:column;gap:4px;border:2px solid var(--ink);border-radius:18px;padding:14px 16px;text-decoration:none;background:var(--bg);transition:all .28s cubic-bezier(0.16, 1, 0.3, 1)}
+.gc b{font-size:18px;letter-spacing:-.03em;transition:transform .2s ease}
+.gc span{font-size:13px;line-height:1.35;color:var(--soft);transition:color .2s ease}
+.gc:hover{background:var(--tint);border-color:var(--pinkd);transform:translateY(-3px);box-shadow:0 8px 20px rgba(62,39,31,0.08)}
+.gc:hover b{transform:translateX(2px)}
+.gc:hover span{color:var(--ink)}
 section.w{max-width:1100px;margin:auto;padding:96px 24px;position:relative}
 h2{font-size:clamp(38px,5.5vw,68px)}
 h3{font-size:clamp(28px,3.6vw,42px)}
@@ -135,8 +136,11 @@ h3{font-size:clamp(28px,3.6vw,42px)}
 .pj p{margin:8px 0 0;color:var(--soft);font-size:16px}
 .about{display:grid;grid-template-columns:1.3fr 1fr;gap:48px;align-items:start}
 footer{background:var(--nav);color:var(--navink);text-align:center;padding:28px 24px;font-size:15px;position:relative;z-index:4}
-.cur{position:fixed;left:0;top:0;width:28px;height:28px;border:2px solid var(--pinkd);border-radius:50%;pointer-events:none;opacity:0;z-index:20;transition:width .15s,height .15s,margin .15s}
-.cur.big{width:48px;height:48px;margin:-10px 0 0 -10px}
+
+/* CURSOR ESTRELLA ROSA */
+.cur{position:fixed;left:0;top:0;width:32px;height:32px;pointer-events:none;opacity:0;z-index:100;transition:width .2s,height .2s,margin .2s;display:flex;align-items:center;justify-content:center}
+.cur svg{width:100%;height:100%;display:block;stroke:var(--pinkd);stroke-width:3;fill:none;stroke-linejoin:round;stroke-linecap:round}
+.cur.big{width:52px;height:52px;margin:-10px 0 0 -10px}
 
 /* STICKERS EN QUIEN SOY CON SOMBRA -30% */
 #quien{position:relative;overflow:hidden}
@@ -181,14 +185,19 @@ nav{gap:16px}nav a{font-size:14px}
 <div class="abt"><div class="txt">
 <p>Soy Tiziana Tombel, estudiante avanzada de la carrera de <b>Licenciatura en Publicidad</b> en la <b>Universidad Argentina de la Empresa</b>, ubicada en La Plata, Buenos Aires. Me considero una persona creativa, observadora y comprometida con los detalles, con un gran interés por el mundo de las marcas, la <b>comunicación digital</b> y la industria de la moda.</p>
 <p>Me interesa formar parte de marcas con identidad clara, propósito y que coincidan con mis valores. A largo plazo, busco desarrollarme en <b>dirección creativa</b> y construcción de universos de marca. <b>Estoy abierta a oportunidades emocionantes.</b></p>
-<a class="btn" href="https://www.linkedin.com/in/tiziana-tombel-8a77ba2a0/" target="_blank" rel="noopener">LinkedIn</a></div>
+<a class="btn" href="https://www.linkedin.com/in/tiziana-tombel-8a77ba2a0/" target="_blank" rel="noopener">LinkedIn</a>
+<a class="btn" href="https://drive.google.com/file/d/1s4uMGG3Zv9ueaoAohLSLPr5SKrPg2Kcz/view?usp=sharing" target="_blank" rel="noopener">CV</a></div>
 <div class="box"><small>Softwares</small><div class="chips"><span>Canva</span><span>CapCut</span><span>Figma</span></div>
 <small style="margin-top:24px">Skills</small><div class="chips"><span>Atención al detalle</span><span>Análisis de métricas</span><span>Diseño y producción de piezas</span><span>Trend forecasting</span><span>Creatividad</span><span>Edición de videos</span><span>Gestión de comunidad</span></div></div></div></section>
 <section class="w" id="cursos"><h2>Cursos y certificados</h2>
 <div class="cvw"><ul class="cv" id="cv"></ul></div></section>
 <section class="w" id="ir"><h2>Explorá mi portfolio</h2><div class="go" id="go"></div></section>
 <section class="cta"><div class="ctai"><h2>Trabajemos <span class="tilt">juntos</span></h2>
-<div class="pl"><a class="m" href="mailto:tiziana.tombel@gmail.com">tiziana.tombel@gmail.com</a><a href="https://www.linkedin.com/in/tiziana-tombel-8a77ba2a0/" target="_blank" rel="noopener">LinkedIn</a></div></div></section>
+<div class="pl">
+<a class="m" href="mailto:tiziana.tombel@gmail.com">tiziana.tombel@gmail.com</a>
+<a href="https://www.linkedin.com/in/tiziana-tombel-8a77ba2a0/" target="_blank" rel="noopener">LinkedIn</a>
+<a href="https://drive.google.com/file/d/1s4uMGG3Zv9ueaoAohLSLPr5SKrPg2Kcz/view?usp=sharing" target="_blank" rel="noopener">CV</a>
+</div></div></section>
 </div>
 
 <section class="w page" id="social">
@@ -230,11 +239,19 @@ nav{gap:16px}nav a{font-size:14px}
 </div></div>
 </section>
 <section class="cta"><div class="ctai"><h2>Trabajemos <span class="tilt">juntos</span></h2>
-<div class="pl"><a class="m" href="mailto:tiziana.tombel@gmail.com">tiziana.tombel@gmail.com</a><a href="https://www.linkedin.com/in/tiziana-tombel-8a77ba2a0/" target="_blank" rel="noopener">LinkedIn</a></div></div></section>
+<div class="pl">
+<a class="m" href="mailto:tiziana.tombel@gmail.com">tiziana.tombel@gmail.com</a>
+<a href="https://www.linkedin.com/in/tiziana-tombel-8a77ba2a0/" target="_blank" rel="noopener">LinkedIn</a>
+<a href="https://drive.google.com/file/d/1s4uMGG3Zv9ueaoAohLSLPr5SKrPg2Kcz/view?usp=sharing" target="_blank" rel="noopener">CV</a>
+</div></div></section>
 </div>
 </main>
 <footer>© 2026 Tiziana Tombel.</footer>
-<div class="cur" id="cur"></div>
+<div class="cur" id="cur">
+  <svg viewBox="0 4 100 100" aria-hidden="true">
+    <path d="M50 6 61.17 38.63 95.65 39.17 68.07 59.87 78.21 92.83 50 73 21.79 92.83 31.93 59.87 4.35 39.17 38.83 38.63Z"/>
+  </svg>
+</div>
 <dialog id="dlg" aria-label="Proceso del proyecto"><button class="x" id="x" aria-label="Cerrar">×</button><div class="dlgin" id="dc"></div></dialog>
 
 <script>
@@ -255,9 +272,9 @@ var feeds=[
   n:'MOXEY',
   p:[
     {t:'Sorteo y anuncio', f:'img/moxey-1.jpg', v:false},
-    {t:'Búsqueda de creadores UGC', f:'img/moxey-2.jpg', v:false},
-    {t:'Serie Día del Padre', f:'img/moxey-3.jpg', v:false},
-    {t:'Reapertura web', f:'video/moxey-vid2.mp4', v:true}
+    {t:'Campaña en video', f:'video/moxey-vid2.mp4', v:true},
+    {t:'Drop y lanzamientos', f:'img/moxey-2.jpg', v:false},
+    {t:'Reel de temporada', f:'video/moxey-vid3.mp4', v:true}
   ]
 },
 {
@@ -268,9 +285,9 @@ var feeds=[
   n:'NARGUILAS',
   p:[
     {t:'Tipos de amigos narguileros', f:'img/nargui-1.jpg', v:false},
+    {t:'Reel destacado', f:'video/nargui-vid1.mp4', v:true},
     {t:'Productos amigos', f:'img/nargui-2.jpg', v:false},
-    {t:'Juego interactivo', f:'img/nargui-3.png', v:false},
-    {t:'Reel destacado', f:'video/nargui-vid1.mp4', v:true}
+    {t:'Experiencia lounge', f:'video/nargui-vid2.mp4', v:true}
   ]
 },
 {
@@ -280,8 +297,8 @@ var feeds=[
   n:'MANFRONI',
   p:[
     {t:'Muebles a medida', f:'img/manfroni-1.png', v:false},
-    {t:'Detalles & Texturas', f:'img/manfroni-2.png', v:false},
     {t:'El taller y el proceso', f:'video/manfroni-vid1.mp4', v:true},
+    {t:'Detalles & Texturas', f:'img/manfroni-2.png', v:false},
     {t:'Asesoramiento en vivo', f:'video/manfroni-vid2.mp4', v:true}
   ]
 }];
@@ -384,7 +401,10 @@ addEventListener('hashchange',go);
 
 var cur=$('cur');
 if(matchMedia('(hover:hover) and (pointer:fine)').matches&&!matchMedia('(prefers-reduced-motion:reduce)').matches){
-  document.addEventListener('pointermove',function(e){cur.style.opacity=1;cur.style.transform='translate('+(e.clientX-14)+'px,'+(e.clientY-14)+'px)'});
+  document.addEventListener('pointermove',function(e){
+    cur.style.opacity=1;
+    cur.style.transform='translate('+(e.clientX-16)+'px,'+(e.clientY-16)+'px)';
+  });
   document.querySelectorAll('a, button').forEach(function(a){
     a.addEventListener('pointerenter',function(){cur.classList.add('big')});
     a.addEventListener('pointerleave',function(){cur.classList.remove('big')});
