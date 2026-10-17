@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>try{var __t=localStorage.getItem('theme');if(__t==='light'||__t==='dark')document.documentElement.setAttribute('data-theme',__t)}catch(e){}</script>
 <title>Tiziana Tombel — Social Media & Community Manager</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 4 100 100'><path d='M50 6 61.17 38.63 95.65 39.17 68.07 59.87 78.21 92.83 50 73 21.79 92.83 31.93 59.87 4.35 39.17 38.83 38.63Z' fill='%23e2f53b' stroke='%233e271f' stroke-width='6' stroke-linejoin='round'/></svg>">
 <style>
@@ -151,7 +152,12 @@ h3{font-size:clamp(28px,3.6vw,42px)}
 .pj-h{display:flex;align-items:center;gap:12px;margin-top:16px;flex-wrap:wrap}
 .pj p{margin:8px 0 0;color:var(--soft);font-size:16px}
 .about{display:grid;grid-template-columns:1.3fr 1fr;gap:48px;align-items:start}
-footer{background:var(--nav);color:var(--navink);text-align:center;padding:28px 24px;font-size:15px;position:relative;z-index:4}
+footer{background:var(--nav);color:var(--navink);text-align:center;padding:28px 24px;font-size:15px;position:relative;z-index:4;display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap}
+.theme{display:inline-flex;gap:4px;padding:3px;border-radius:999px;background:rgba(255,255,255,.1)}
+.theme button{width:34px;height:34px;border:0;border-radius:50%;background:transparent;color:var(--navink);opacity:.65;display:grid;place-items:center;padding:0;cursor:pointer;transition:background .2s,color .2s,opacity .2s}
+.theme button:hover{opacity:1}
+.theme button[aria-pressed="true"]{background:var(--lime);color:#3e271f;opacity:1}
+.theme svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 
 .cur{position:fixed;left:0;top:0;width:24px;height:24px;pointer-events:none;opacity:0;z-index:100;transition:width .2s,height .2s,margin .2s;display:flex;align-items:center;justify-content:center}
 .cur svg{width:100%;height:100%;display:block;stroke:var(--pinkd);stroke-width:3;fill:none;stroke-linejoin:round;stroke-linecap:round}
@@ -328,7 +334,7 @@ nav{gap:16px}nav a{font-size:14px}
 </div></div></section>
 </div>
 </main>
-<footer>© 2026 Tiziana Tombel.</footer>
+<footer><span>© 2026 Tiziana Tombel.</span><div class="theme" role="group" aria-label="Elegir modo de color"><button type="button" data-mode="light" aria-label="Modo claro" title="Modo claro"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg></button><button type="button" data-mode="dark" aria-label="Modo oscuro" title="Modo oscuro"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button></div></footer>
 <div class="cur" id="cur">
   <svg viewBox="0 4 100 100" aria-hidden="true">
     <path d="M50 6 61.17 38.63 95.65 39.17 68.07 59.87 78.21 92.83 50 73 21.79 92.83 31.93 59.87 4.35 39.17 38.83 38.63Z"/>
@@ -704,6 +710,20 @@ all('.page').forEach(function(pg){
   if(pg.classList.contains('on'))setTimeout(function(){all('.mk',pg).forEach(function(m){m.classList.add('go')})},80)});
 })();
 
+
+(function(){
+  var root=document.documentElement,mq=window.matchMedia('(prefers-color-scheme:dark)');
+  var btns=document.querySelectorAll('.theme button');
+  function eff(){var t=root.getAttribute('data-theme');return t||(mq.matches?'dark':'light')}
+  function sync(){var m=eff();btns.forEach(function(b){b.setAttribute('aria-pressed',b.dataset.mode===m?'true':'false')})}
+  btns.forEach(function(b){b.addEventListener('click',function(){
+    root.setAttribute('data-theme',b.dataset.mode);
+    try{localStorage.setItem('theme',b.dataset.mode)}catch(e){}
+    sync();
+  })});
+  if(mq.addEventListener)mq.addEventListener('change',sync);
+  sync();
+})();
 </script>
 </body>
 </html>
