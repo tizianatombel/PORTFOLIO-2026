@@ -7,45 +7,47 @@
 <script>try{var __t=localStorage.getItem('theme');if(__t==='light'||__t==='dark')document.documentElement.setAttribute('data-theme',__t)}catch(e){}</script>
 <title>404 — Tiziana Tombel</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 4 100 100'><path d='M50 6 61.17 38.63 95.65 39.17 68.07 59.87 78.21 92.83 50 73 21.79 92.83 31.93 59.87 4.35 39.17 38.83 38.63Z' fill='%23e2f53b' stroke='%233e271f' stroke-width='6' stroke-linejoin='round'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#fff;--ink:#3e271f;--soft:#7b6358;--accent:#f9cde4;--pinkd:#e58bbd;--lime:#e2f53b;--onacc:#3e271f;color-scheme:light}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1c110d;--ink:#fdeaf4;--soft:#c9aab9;color-scheme:dark}}
-:root[data-theme="dark"]{--bg:#1c110d;--ink:#fdeaf4;--soft:#c9aab9;color-scheme:dark}
+:root{--bg:#fff;--ink:#3e271f;--soft:#6f564b;--lime:#e2f53b;--pinkd:#e58bbd;--onacc:#3e271f;--line:rgba(62,39,31,.16);--f:"Inter Tight",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;--fs:var(--f);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1c110d;--ink:#fdeaf4;--soft:#c9aab9;--line:rgba(253,234,244,.18);color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1c110d;--ink:#fdeaf4;--soft:#c9aab9;--line:rgba(253,234,244,.18);color-scheme:dark}
 *{box-sizing:border-box}
 html,body{height:100%}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;display:grid;place-items:center;padding:24px;overflow:hidden}
-main{position:relative;z-index:2;width:min(880px,100%);text-align:left}
-.num{display:flex;align-items:center;justify-content:flex-start;font-weight:800;font-size:clamp(44px,10.4vw,88px);line-height:1;letter-spacing:-.04em}
-.num svg{width:.82em;height:.82em;margin:0 -.02em;display:block}
-.num svg path{fill:var(--lime)}
-.err{margin-right:.3em}
-.spin{animation:rot 9s linear infinite}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f);font-optical-sizing:auto;font-size:17px;line-height:1.55;overflow-x:clip}
+.wrap{min-height:100svh;display:grid;grid-template-rows:auto 1fr auto;padding:max(28px,env(safe-area-inset-top,0px)) clamp(20px,4.5vw,64px) max(28px,env(safe-area-inset-bottom,0px))}
+.top{display:inline-block;width:40px;height:40px}
+.top svg{width:100%;height:100%;display:block;animation:rot 9s linear infinite}
+.top path{fill:var(--lime);stroke:var(--ink);stroke-width:5;stroke-linejoin:round}
 @keyframes rot{to{transform:rotate(360deg)}}
-@media (prefers-reduced-motion:reduce){.spin{animation:none}}
-h1{margin:.9em 0 0;font-size:16px;line-height:1.2}
-.tilt{display:inline-block;background:var(--lime);color:var(--onacc);padding:.04em .22em .1em;transform:rotate(-2deg)}
-p{margin:14px 0 0;color:var(--soft);font-size:14px;max-width:32em}
-.btn{display:inline-block;margin-top:20px;border:2px solid var(--ink);border-radius:99px;padding:8px 22px;font-size:14px;text-decoration:none;font-weight:700;color:inherit;transition:background .2s,color .2s}
-.btn:hover{background:var(--lime);color:var(--onacc);border-color:var(--lime)}
-.btn:focus-visible{outline:3px solid var(--pinkd);outline-offset:3px}
-.bg{position:fixed;inset:0;pointer-events:none;z-index:1}
-.bg svg{position:absolute}
+.num,h1{font-family:var(--fs)}
+.num{align-self:center;display:flex;align-items:baseline;flex-wrap:wrap;gap:.12em;font-weight:700;font-size:clamp(40px,7vw,88px);line-height:.9;letter-spacing:-.05em}
+.err{font-size:.3em;font-weight:500;letter-spacing:-.04em;margin-right:.3em;color:var(--soft)}
+.d{display:inline-flex;align-items:center}
+.d svg{width:.74em;height:.74em;margin:0 -.02em;animation:rot 9s linear infinite}
+.d path{fill:var(--lime);stroke:var(--ink);stroke-width:4;stroke-linejoin:round}
+.foot{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:32px;align-items:end;}
+h1{margin:0;font-size:clamp(24px,3vw,38px);font-weight:600;letter-spacing:-.025em;line-height:1.1}
+.tilt{display:inline-block;background:var(--lime);color:var(--onacc);padding:.04em .18em .08em;transform:rotate(-2deg)}
+p{margin:16px 0 0;color:var(--soft);max-width:36em}
+.btn{display:inline-block;padding:12px 26px;border:2px solid var(--ink);border-radius:10px;background:var(--ink);color:var(--bg);font-weight:600;text-decoration:none;transition:background .15s,color .15s,border-color .15s}
+.btn:hover{background:var(--lime);border-color:var(--lime);color:var(--onacc)}
+a:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+@media (max-width:700px){.foot{grid-template-columns:1fr}.btn{justify-self:start}}
+@media (prefers-reduced-motion:reduce){.top svg,.d svg{animation:none}}
 </style>
 </head>
 <body>
-<div class="bg" aria-hidden="true">
-<svg viewBox="0 4 100 100" style="left:62%;top:14%;width:30px;height:30px"><path d="M50 6 61.17 38.63 95.65 39.17 68.07 59.87 78.21 92.83 50 73 21.79 92.83 31.93 59.87 4.35 39.17 38.83 38.63Z" fill="var(--ink)"/></svg>
-<svg viewBox="0 4 100 100" style="left:84%;top:24%;width:20px;height:20px"><path d="M50 6 61.17 38.63 95.65 39.17 68.07 59.87 78.21 92.83 50 73 21.79 92.83 31.93 59.87 4.35 39.17 38.83 38.63Z" fill="var(--ink)"/></svg>
-<svg viewBox="0 4 100 100" style="left:74%;top:70%;width:26px;height:26px"><path d="M50 6 61.17 38.63 95.65 39.17 68.07 59.87 78.21 92.83 50 73 21.79 92.83 31.93 59.87 4.35 39.17 38.83 38.63Z" fill="var(--ink)"/></svg>
-<svg viewBox="0 4 100 100" style="left:90%;top:82%;width:16px;height:16px"><path d="M50 6 61.17 38.63 95.65 39.17 68.07 59.87 78.21 92.83 50 73 21.79 92.83 31.93 59.87 4.35 39.17 38.83 38.63Z" fill="var(--ink)"/></svg>
-<svg viewBox="0 4 100 100" style="left:8%;top:86%;width:18px;height:18px"><path d="M50 6 61.17 38.63 95.65 39.17 68.07 59.87 78.21 92.83 50 73 21.79 92.83 31.93 59.87 4.35 39.17 38.83 38.63Z" fill="var(--ink)"/></svg>
-<svg viewBox="0 4 100 100" style="left:46%;top:8%;width:14px;height:14px"><path d="M50 6 61.17 38.63 95.65 39.17 68.07 59.87 78.21 92.83 50 73 21.79 92.83 31.93 59.87 4.35 39.17 38.83 38.63Z" fill="var(--ink)"/></svg>
-</div>
-<main>
-<div class="num" role="img" aria-label="Error 404"><span class="err">error</span><span>4</span><svg class="spin" viewBox="0 4 100 100" aria-hidden="true"><path d="M50 6 61.17 38.63 95.65 39.17 68.07 59.87 78.21 92.83 50 73 21.79 92.83 31.93 59.87 4.35 39.17 38.83 38.63Z"/></svg><span>4</span></div>
-<h1><span class="tilt">Uy, esta página no existe.</span></h1>
-<p>Puede que el link esté mal escrito o que la pieza haya cambiado de lugar. Lo bueno es que el resto del portfolio sigue en pie.</p>
+<div class="wrap">
+<a class="top" href="https://tizianatombel.github.io/PORTFOLIO-2026/" aria-label="Volver al inicio"><svg viewBox="0 4 100 100" aria-hidden="true"><path d="M50 6 61.17 38.63 95.65 39.17 68.07 59.87 78.21 92.83 50 73 21.79 92.83 31.93 59.87 4.35 39.17 38.83 38.63Z"/></svg></a>
+<div class="num" role="img" aria-label="Error 404"><span class="err">error</span><span class="d">4<svg viewBox="0 4 100 100" aria-hidden="true"><path d="M50 6 61.17 38.63 95.65 39.17 68.07 59.87 78.21 92.83 50 73 21.79 92.83 31.93 59.87 4.35 39.17 38.83 38.63Z"/></svg>4</span></div>
+<div class="foot">
+<div><h1><span class="tilt">Uy, esta página no existe.</span></h1>
+<p>Puede que el link esté mal escrito o que la pieza haya cambiado de lugar. Lo bueno es que el resto del portfolio sigue en pie.</p></div>
 <a class="btn" href="https://tizianatombel.github.io/PORTFOLIO-2026/">Volver al inicio</a>
-</main>
+</div>
+</div>
 </body>
 </html>
