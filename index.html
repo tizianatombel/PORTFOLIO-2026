@@ -494,8 +494,9 @@ var feeds=[
   t:'Narguilas Córdoba',
   c:'Comercio de hookah y tabaquería',
   ig:'narguilascordoba_',
-  s:[['+425k','cuentas alcanzadas*'],['+1,1M','views al perfil'],['+9k','interacciones']],
-  d:'En Narguilas Córdoba, hookah lounge y comercio con sucursales en Córdoba y una en Palermo, mi rol incluye la creación de contenido y gestión de marca en redes sociales. Soy responsable de la planificación creativa y la producción de contenido en Instagram y TikTok.',
+  s:[['+584k','cuentas alcanzadas*'],['+1,85M','views*'],['+33k','interacciones*']],
+  fn:'*Métricas de estrategias orgánicas en Instagram correspondientes al 01/04 al 31/10.',
+  d:'En Narguilas Córdoba, hookah lounge y comercio con sucursales en Córdoba y una en Palermo, fui responsable de la creación de contenido y la gestión de marca en Instagram y TikTok entre abril y octubre de 2026. Desarrollé la planificación creativa y la producción de contenido, con una estrategia de colaboraciones y eventos que llevó la comunidad de 6,4k a 9,8k seguidores (+53%) y subió la audiencia de Buenos Aires del 4,2% al 11%.',
   p:[
     {t:'Tipos de amigos narguileros', f:'img/nargui-1.jpg', v:false},
     {t:'Reel destacado', f:'video/nargui-vid2.mp4', v:true},
@@ -537,7 +538,7 @@ $('feeds').innerHTML=feeds.map(function(f){
   socHtml += '</div>';
 
   return '<article class="acct"><div class="acct-id"><div class="sub-row"><h3 class="sub">'+f.t+'</h3>'+socHtml+'</div><p class="cat">'+f.c+'</p></div><div class="acct-b">'+
-  (f.s?'<div class="stats">'+f.s.map(function(x){return '<div class="stat"><b>'+x[0]+'</b><span>'+x[1]+'</span></div>'}).join('')+'</div><p class="fn">*Métricas de estrategias orgánicas en Instagram correspondientes al 01/04 al 01/08.</p>':'')+
+  (f.s?'<div class="stats">'+f.s.map(function(x){return '<div class="stat"><b>'+x[0]+'</b><span>'+x[1]+'</span></div>'}).join('')+'</div><p class="fn">'+(f.fn||'*Métricas de estrategias orgánicas en Instagram correspondientes al 01/04 al 01/08.')+'</p>':'')+
   '<p class="lead">'+f.d+'</p></div>'+
   '<div class="row">'+
     f.p.map(function(item){
